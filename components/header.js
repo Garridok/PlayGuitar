@@ -26,6 +26,9 @@ export default function Header() {
             <Link href='/carrito'>
               <Image src='/img/carrito.png' alt='carrito' width={30} height={25} />
             </Link>
+            <Link href='/user'>
+              <Image src='/img/userwhite.png' alt='user' width={35} height={30} />
+            </Link>
 
 
           </nav>

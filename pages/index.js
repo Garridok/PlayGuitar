@@ -27,7 +27,7 @@ export default function Home({guitarras, posts, curso}) {
         </main>
         
         <Curso 
-          curso={curso.attributes}
+          curso={curso?.attributes}
         />
 
         <section className='contenedor'>

@@ -33,6 +33,13 @@ main {
   font-weight: 900;
   color: var(--primary);
   margin: 5rem 0;
+}[class*="headingblack"] {
+  font-size: 4rem;
+  text-align: center;
+  font-weight: 900;
+  color: var(--black);
+  margin: 5rem 0;
+  margin-left: 10px;
 }
 
 .navegacion{
@@ -70,4 +77,37 @@ main {
   display: block;
   text-decoration: none;
   color: var(--primary);
+}
+
+.primera{
+  display: flex;
+}
+
+.datos{
+  padding: 3rem;
+  display: flex;
+}
+
+.datos label {
+  margin-right: 3rem;
+  color: var(--primary);
+  font-weight: 700;
+}
+
+.datos input {
+  display: flex;
+  justify-content: center ;
+}
+
+.button {
+  display: flex;
+  /* margin: 0 auto; */
+  margin-left: 3rem;
+  margin-top: 2rem;
+  background-color: var(--primary);
+  color: white;
+  border-radius: 12px;
+  cursor: pointer;
+  padding: 1rem;
+
 }
