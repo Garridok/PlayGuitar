@@ -1,21 +1,21 @@
 import styles from '../styles/login.module.css'
 import Link from 'next/link'
 
-export default function LoginRegister() {
+export default function LoginRegister({cambiarRegister}) {
   return (
     <div className = {styles.wrapper}>
       <form className={styles.formsignin}>       
-        <h2 className={styles.formsigninheading}>Please login</h2>
+        <h2 className={styles.formsigninheading}>Login</h2>
         <div className="flex">
 
-          <input type="text" className={styles.formcontrol} name="username" placeholder="Email Address" required />
+          <input type="email" className={styles.formcontrol} name="username" placeholder="Email Address" required />
           <input type="password" className={styles.formcontrol} name="password" placeholder="Password"  required/>      
         
           <button className={styles.btnlogin} type="submit">Login</button>
 
-          <Link href={'/register'}>
-            <p className={styles.newAccount}>Eres nuevo? Create una Cuenta</p>
-          </Link>
+            <p className={styles.newAccount}
+                onClick={() => cambiarRegister()}
+            >Eres nuevo? Create una Cuenta</p>
         </div>
       </form>
   </div>

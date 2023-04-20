@@ -1,0 +1,17 @@
+
+.titulo {
+    color: var(--primary);
+    width: 10%;
+}
+
+.part1 {
+    margin: 2rem;
+    max-width: 35%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.part1 label {
+    color: var(--primary);
+    font-weight: 700;
+}
