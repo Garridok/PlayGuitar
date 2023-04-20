@@ -17,7 +17,9 @@ export default function Footer() {
             <Link href='/tienda'>Tienda</Link>
           </nav>
           <p className={styles.copyright}>Todos los derechos reservados { new Date().getFullYear() }</p>
+          <p className={styles.white}>Realizado por Antonio Garrido y Maria</p>
         </div>
+        
     </footer>
   )
 }

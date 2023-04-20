@@ -1,0 +1,68 @@
+  
+  .wrapper {
+    margin-top: 80px;
+    margin-bottom: 80px;
+  }
+  
+  .formsignin {
+    max-width: 380px;
+    padding: 15px 35px 45px;
+    margin: 0 auto;
+    background-color: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+  }
+  .formsignin .formsigninheading,
+  .formsignin .checkbox {
+    margin-bottom: 30px;
+  }
+  .formsignin .checkbox {
+    font-weight: normal;
+  }
+  .formsignin .formcontrol {
+    position: relative;
+    font-size: 16px;
+    height: auto;
+    padding: 10px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+  .formsignin .formcontrol:focus {
+    z-index: 2;
+  }
+  .formsignin input[type=text] {
+    margin-bottom: -1px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+  .formsignin input[type=password] {
+    margin-bottom: 20px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+  }
+
+  .btnlogin {
+    display: block;
+    width: 75%;
+    padding: .5rem;
+    background-color: var(--primary);
+    color: white;
+    margin-left: 1.3rem;
+    border-radius: 12px;
+    border: none;
+    cursor: pointer;
+    transition: 300ms;
+  }
+
+  .btnlogin:hover {
+    background-color: rgb(200, 134, 13);
+    transition: 300ms;
+  }
+
+  .newAccount {
+    font-size: 15px;
+    display: flex;
+    justify-content: flex-end;
+    color:rgb(41, 41, 227) ;
+    cursor: pointer;
+  }
