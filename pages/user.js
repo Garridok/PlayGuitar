@@ -9,7 +9,7 @@ export default function user() {
   const [login, setLogin] = useState(true);
   const [register, setRegister] = useState(false);
 
-  const [nextReg, setNextReg] = useState(true);
+  const [nextReg, setNextReg] = useState(false);
 
   const cambiarRegister = () => {
     setRegister(!register);
@@ -32,7 +32,7 @@ export default function user() {
 
 
         {/* Si el usurio esta logeado */}
-        {/* <Userlogin /> */}
+        {/* { <Userlogin /> } */}
 
 
 
