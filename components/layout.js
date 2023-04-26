@@ -6,7 +6,7 @@ export default function Layout({children, title = '', description = ''}) {
   return (
     <>
         <Head>
-            <title>{`GuitarLA - ${title}`}</title>
+            <title>{`PlayGuitar - ${title}`}</title>
             <meta name='description' content={description} />
         </Head>
 

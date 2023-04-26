@@ -1,0 +1,34 @@
+
+.noticia img{
+    border-radius: 12px;
+}
+
+.ima {
+    border-radius: 2rem;
+}
+
+.btn {
+    display: block;
+    width: 75%;
+    padding: .5rem;
+    background-color: var(--primary);
+    color: white;
+    margin-left: 1.3rem;
+    border-radius: 12px;
+    text-align: center;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: 300ms;
+  }
+
+  .btn:hover {
+    background-color: rgb(200, 134, 13);
+    transition: 300ms;
+  }
+  .resumen{
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+  }
