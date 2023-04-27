@@ -6,10 +6,13 @@ import { useState } from "react"
 
 export default function user() {
 
+  //Formularios para saber estado de la cuenta
+  //de serie login en true, y lo demas en false
   const [login, setLogin] = useState(true);
   const [register, setRegister] = useState(false);
-
   const [nextReg, setNextReg] = useState(false);
+
+  
 
   const cambiarRegister = () => {
     setRegister(!register);
@@ -25,7 +28,10 @@ export default function user() {
     description={'Ventas de guitarras, y blog de musica'}
     >
         {/* Si el usuario no esta logeado */}
-        {register ? <Register1 nextRegister={nextRegister} nextReg={nextReg}  /> : <Login login={login} cambiarRegister={cambiarRegister}/> }
+        {!login ? 
+          <Register1 
+            nextReg={nextReg} nextRegister={nextRegister} /> : 
+          <Login login={login} cambiarRegister={cambiarRegister}/> }
         
 
         {/* registrar nuevo usuario */}

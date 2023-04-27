@@ -15,3 +15,8 @@
     color: var(--primary);
     font-weight: 700;
 }
+
+.flex {
+    display: flex;
+    justify-content: space-between;
+}

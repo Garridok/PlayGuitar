@@ -1,8 +1,24 @@
+import axios from 'axios';
+import bcrypt from 'bcryptjs';
 import styles from '../styles/register.module.css'
 import Register2 from './register2';
+import { useState } from 'react';
 
-export default function Register1({nextRegister, nextReg}) {
-    console.log(nextReg);
+export default function Register1({nextReg, nextRegister}) {
+  
+
+
+  //Datos de formulario de registro
+  //cuando descomentemos, acordar poner onSubmit en el form
+  const [nombre, setNombre] = useState('');
+  const [apellido, setApellido] = useState('');
+  const [email, setEmail] = useState('');
+  const [pass, setPass] = useState('');
+
+  //Encry contrasena
+  const saltRound = 10;
+  const salt = bcrypt.genSaltSync(saltRound);
+  const hash = bcrypt.hashSync(pass, salt);
   
   return (
 
@@ -11,28 +27,40 @@ export default function Register1({nextRegister, nextReg}) {
 
       <h1 className="heading">Registrarse</h1>
 
-      {nextReg ? 
+      {!nextReg ? 
 
-      <form className='center'>
+      <form className="center">
         {/* Primera parte de info personal */}
-        <div className={styles.part1}>
-          <label>Nombre: </label>
-          <input type="text" name="" id="" />
-        </div>
+        <div className={styles.flex}>
+          <div className={styles.primerapart}>
+            <div className={styles.part1}>
+              <label>Nombre: </label>
+              <input type="text" name="name" id="name"
+                onChange={(e) => setNombre(e.target.value)}
+              />
+            </div>
+            
+            <div className={styles.part1}>
+              <label>Apellido: </label>
+              <input type="text" name="apellido" id="apellido"
+                onChange={(e) => setApellido(e.target.value)}
+              />
+            </div>
 
-        <div className={styles.part1}>
-          <label>Apellido: </label>
-          <input type="text" name="" id="" />
-        </div>
+            <div className={styles.part1}>
+              <label>Email: </label>
+              <input type="email" name="email" id="email"
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </div>
 
-        <div className={styles.part1}>
-          <label>Email: </label>
-          <input type="email" name="" id="" />
-        </div>
-
-        <div className={styles.part1}>
-          <label>Contrasena: </label>
-          <input type="text" name="" id="" />
+            <div className={styles.part1}>
+              <label>Contrasena: </label>
+              <input type="password" name="pass" id="pass" 
+                onChange={(e) => setPass(e.target.value)}
+              />
+            </div>
+          </div>
         </div>
 
         <button type='button'
@@ -43,7 +71,14 @@ export default function Register1({nextRegister, nextReg}) {
 
 
       </form>
-      : <Register2 />}
+      : <Register2 
+          nombre={nombre}
+          apellido={apellido}
+          email={email}
+          pass={hash}
+        
+        />}
     </main>
   )
-}
+  }
+
