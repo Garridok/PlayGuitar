@@ -4,7 +4,7 @@ import styles from '../styles/register.module.css'
 import Register2 from './register2';
 import { useState } from 'react';
 
-export default function Register1({nextReg, nextRegister}) {
+export default function Register1({nextReg, nextRegister, cambiarRegister}) {
   
 
 
@@ -29,8 +29,7 @@ export default function Register1({nextReg, nextRegister}) {
 
       {!nextReg ? 
 
-      <form className="center">
-        {/* Primera parte de info personal */}
+      <form className={styles.form2}>
         <div className={styles.flex}>
           <div className={styles.primerapart}>
             <div className={styles.part1}>
@@ -48,7 +47,7 @@ export default function Register1({nextReg, nextRegister}) {
             </div>
 
             <div className={styles.part1}>
-              <label>Email: </label>
+              <label>Email:   </label>
               <input type="email" name="email" id="email"
                 onChange={(e) => setEmail(e.target.value)}
               />
@@ -61,12 +60,17 @@ export default function Register1({nextReg, nextRegister}) {
               />
             </div>
           </div>
-        </div>
 
-        <button type='button'
+        </div>
+        <button className={styles.btnRe}
+                type='button'
                 onClick={() => nextRegister()}
         >Siguiente
         </button>
+
+        <p className={styles.newAccount}
+                onClick={() => cambiarRegister()}
+            >Ya tienes cuenta? Logeate Aqui</p>
         
 
 
@@ -76,7 +80,7 @@ export default function Register1({nextReg, nextRegister}) {
           apellido={apellido}
           email={email}
           pass={hash}
-        
+          nextRegister={nextRegister}
         />}
     </main>
   )

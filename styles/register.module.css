@@ -6,17 +6,80 @@
 
 .part1 {
     margin: 2rem;
-    max-width: 35%;
-    display: flex;
-    justify-content: space-between;
+    width: 50%;
+
 }
 
 .part1 label {
     color: var(--primary);
     font-weight: 700;
+    text-align: center;
+    margin-left: 20px;
+}
+
+.part1 input {
+    margin-left: 2rem;
 }
 
 .flex {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+
 }
+
+.btnRe {
+    width: 20%;
+    padding: .5rem;
+    background-color: var(--primary);
+    color: white;
+    margin-left: 36rem;
+    margin-top: 2rem;
+    border-radius: 12px;
+    border: none;
+    cursor: pointer;
+    transition: 300ms;
+  }
+
+  .btnRe:hover {
+    background-color: rgb(200, 134, 13);
+    transition: 300ms;
+  }
+
+.newAccount {
+    font-size: 15px;
+    display: flex;
+    justify-content: center;
+    color:rgb(41, 41, 227) ;
+    cursor: pointer;
+  }
+
+  .form2 {
+    margin-top: -25px;
+    margin-left: 15rem;
+
+  }
+
+  .btnRe2 {
+    width: 20%;
+    padding: 1rem;
+    background-color: rgb(68, 207, 68);
+    color: white;
+    margin-left: 36rem;
+    margin-top: 2rem;
+    border-radius: 12px;
+    border: none;
+    cursor: pointer;
+    transition: 300ms;
+  }
+
+  .btnRe2:hover {
+    background-color: rgb(19, 122, 19);
+    transition: 300ms;
+  }
+
+  .btnstyle{
+    display: flex;
+    justify-content: center;
+
+    
+  }

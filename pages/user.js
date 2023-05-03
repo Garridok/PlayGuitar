@@ -15,7 +15,7 @@ export default function user() {
   
 
   const cambiarRegister = () => {
-    setRegister(!register);
+    setLogin(!login);
   };
 
   const nextRegister = () => {
@@ -30,7 +30,7 @@ export default function user() {
         {/* Si el usuario no esta logeado */}
         {!login ? 
           <Register1 
-            nextReg={nextReg} nextRegister={nextRegister} /> : 
+            nextReg={nextReg} nextRegister={nextRegister} cambiarRegister={cambiarRegister} /> : 
           <Login login={login} cambiarRegister={cambiarRegister}/> }
         
 

@@ -3,7 +3,7 @@ import styles from '../styles/register.module.css'
 import bcrypt from 'bcryptjs';
 import axios from "axios";
 
-export default function Register2({nombre, apellido, email, pass}) {
+export default function Register2({nombre, apellido, email, pass, nextRegister}) {
 
 
   // Mandar el formulario al BackEnd
@@ -36,8 +36,10 @@ export default function Register2({nombre, apellido, email, pass}) {
 
   return (
     <main className="contenedor">
-      <form onSubmit={ handleSubmit}>
-        <div className={styles.part2}>
+      <form onSubmit={ handleSubmit} className={styles.form2}>
+        <div className={styles.flex}>
+        <div className={styles.primerapart}>
+        <div className={styles.part1}>
           <label>Calle: </label>
           <input
             type="text"
@@ -47,7 +49,7 @@ export default function Register2({nombre, apellido, email, pass}) {
           />
         </div>
 
-        <div className={styles.part2}>
+        <div className={styles.part1}>
           <label>Codigo Postal: </label>
           <input
             type="text"
@@ -57,7 +59,7 @@ export default function Register2({nombre, apellido, email, pass}) {
           />
         </div>
 
-        <div className={styles.part2}>
+        <div className={styles.part1}>
           <label>Letra: </label>
           <input
             type="text"
@@ -67,7 +69,7 @@ export default function Register2({nombre, apellido, email, pass}) {
           />
         </div>
 
-        <div className={styles.part2}>
+        <div className={styles.part1}>
           <label>Localidad: </label>
           <input
             type="text"
@@ -77,7 +79,7 @@ export default function Register2({nombre, apellido, email, pass}) {
           />
         </div>
 
-        <div className={styles.part2}>
+        <div className={styles.part1}>
           <label>Numero: </label>
           <input
             type="number"
@@ -87,7 +89,7 @@ export default function Register2({nombre, apellido, email, pass}) {
           />
         </div>
 
-        <div className={styles.part2}>
+        <div className={styles.part1}>
           <label>Piso: </label>
           <input
             type="text"
@@ -96,7 +98,16 @@ export default function Register2({nombre, apellido, email, pass}) {
             onChange={(e) => setNombre(e.target.value)}
           />
         </div>
-        <button type="submit">enviar</button>
+        <div className={styles.btnstyle}>
+          <button type='button'
+                  onClick={() => nextRegister()}
+          >Anterior
+          </button>
+          <button className={styles.btnRe2} type="submit">enviar</button>
+        </div>
+        
+        </div>
+        </div>
       </form>
       {console.log(pass)}
     </main>
