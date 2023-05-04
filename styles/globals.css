@@ -114,3 +114,11 @@ main {
 .flex{
   margin-left: 3rem;
 }
+
+.mt-5{
+  margin-top: 13rem;
+}
+
+.borderb {
+  border-bottom: 1px groove #333;
+}

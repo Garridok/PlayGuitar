@@ -1,12 +1,14 @@
 import Layout from '../components/layout'
 import Guitarra from '../components/guitarra'
-import Post from '../components/post'
-import Curso from '../components/curso'
+import TopVentas from '../components/topVentas'
 import styles from '../styles/grid.module.css'
+import { useState } from 'react'
 
 
 
-export default function Home({guitarras, posts, curso}) {
+export default function Home({guitarrasTop, guitarrasPopu, guitarrasUlti}) {
+  
+
   return (
     <>
       <Layout 
@@ -14,64 +16,71 @@ export default function Home({guitarras, posts, curso}) {
         description={'Ventas de guitarras, y blog de musica'}
       >
         <main className='contenedor'>
-          <h1 className='heading'>Nuestra Coleccion</h1>
+          <h1 className='heading'>Nuestras Top Ventas</h1>
+          
+          <div className="borderb">
 
+         
           <div className={styles.grid}>
-                {guitarras?.map( guitarra => (
-                    <Guitarra
+                {guitarrasTop?.map( guitarra => (
+                    <TopVentas
                         key={guitarra.id}
-                        guitarra={guitarra.attributes}
+                        guitarra={guitarra}
                     />
                     ) )}
             </div>
-        </main>
-        
-        <Curso 
-          curso={curso?.attributes}
-        />
-
-        <section className='contenedor'>
-              <h2 className='heading'>Blog</h2>
-
-                <div className={styles.grid}>
-                  {posts?.map( post => (
-                  <Post 
-                    key={post.id}
-                    post={post.attributes}
-                  />
-              ))}
             </div>
-        </section>
+
+          <div className="mt-5 borderb">
+          <h1 className='heading'> Populares Actuales </h1>
+
+          <div className={styles.grid}>
+                {guitarrasPopu?.map( guitarra => (
+                    <TopVentas
+                        key={guitarra.id}
+                        guitarra={guitarra}
+                    />
+                    ) )}
+            </div>
+          </div>
+
+
+          <div className="mt-5">
+          <h1 className='heading'> Las mas nuevas </h1>
+          
+          
+
+          <div className={styles.grid}>
+                {guitarrasUlti?.map( guitarra => (
+                  <TopVentas
+                  key={guitarra.id}
+                  guitarra={guitarra}
+                  />
+                  ) )}
+          </div>
+          </div>
+        </main>
 
       </Layout>
     </>
   )
 }
 
-
-export async function getStaticProps() {
-  const urlGuitarras = `${process.env.API_URL}/guitarras?populate=imagen`
-  const urlPosts = `${process.env.API_URL}/posts?populate=imagen`
-  const urlCurso = `${process.env.API_URL}/curso?populate=imagen`
-
-  const [ resGuitarras, resPosts, resCurso ] = await Promise.all( [
-    fetch(urlGuitarras),
-    fetch(urlPosts),
-    fetch(urlCurso)
-  ])
-
-
-  const [ {data: guitarras}, {data: posts}, {data: curso} ] = await Promise.all([
-    resGuitarras.json(),
-    resPosts.json(),
-    resCurso.json()
-  ])
+//Llamamos a la API y sacamos las tres primeras guitarras, para simular la top ventas
+export async function getServerSideProps() {
+  const respuesta = await fetch("http://127.0.0.1:8087/rest/todos")
+  const guitarras = await respuesta.json();
+  const sliceData = guitarras.slice(0, 3);
+  const slicePopu = guitarras.slice(5, 8);
+  const sliceUlti = guitarras.slice(13, 19)
+  
 
   return {
-    props: {
-      guitarras,
-      posts, 
-      curso
-    }
+      props: {
+          guitarrasTop: sliceData,
+          guitarrasPopu: slicePopu,
+          guitarrasUlti: sliceUlti
+      }
   }
 }
+

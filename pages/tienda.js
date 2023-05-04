@@ -18,7 +18,7 @@ export default function Tienda({guitarras}) {
                 {guitarras?.map( guitarra => (
                     <Guitarra
                         key={guitarra.id}
-                        guitarra={guitarra.attributes}
+                        guitarra={guitarra}
                     />
                     ) )}
             </div>
@@ -29,8 +29,8 @@ export default function Tienda({guitarras}) {
 
 
 export async function getServerSideProps() {
-    const respuesta = await fetch(`${process.env.API_URL}/guitarras?populate=imagen`)
-    const {data: guitarras} = await respuesta.json();
+    const respuesta = await fetch("http://127.0.0.1:8087/rest/todos")
+    const guitarras = await respuesta.json();
     
 
     return {
