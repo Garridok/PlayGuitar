@@ -6,7 +6,7 @@ import Layout from '../../components/layout'
 export default function Producto({guitarra, agregarCarrito}) {
 
   const [cantidad, setCantidad] = useState(0);
-  const { nombre, descripcion, precio, imagen } = guitarra
+  const { nombre, descripcion, precio, stock } = guitarra
   
   const handleSubmit = e => {
     e.preventDefault()
@@ -18,8 +18,8 @@ export default function Producto({guitarra, agregarCarrito}) {
 
     //Construir Objecto con la guitarra seleccionada
     const guitarraSeleccionada = {
-      id: guitarra[0].id,
-      imagen: url,
+      id: guitarra.idProducto,
+      // imagen: url,
       nombre,
       precio,
       cantidad
@@ -32,7 +32,7 @@ export default function Producto({guitarra, agregarCarrito}) {
   return (
     <Layout title={`Guitarra ${nombre}`}>
       <div className={styles.guitarra}>
-        {/* <Image src={imagen.data.attributes.url} alt={`imagen de ${nombre}`} width={600} height={400} /> */}
+        <Image src={"https://res.cloudinary.com/dr93wiq74/image/upload/v1683214516/guitarra_08_ww39qe.jpg"} alt={`imagen de ${nombre}`} width={600} height={400} />
 
         <div className={styles.contenido}>
           <h3>{nombre}</h3>
@@ -69,12 +69,12 @@ export default function Producto({guitarra, agregarCarrito}) {
 
 
 export async function getStaticPaths() {
-  const respuesta = await fetch(`${process.env.API_URL}/guitarras`)
-  const { data } = await respuesta.json();
+  const respuesta = await fetch(`http://127.0.0.1:8087/rest/todos`)
+  const respon = await respuesta.json();
 
-  const paths = data.map( guitarra => ({
+  const paths = respon.map( guitarra => ({
     params: {
-      url: guitarra.attributes.url
+      url: guitarra.idProducto.toString(),
     }
   }))
 
@@ -85,9 +85,10 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({params: {url}}) {
-      const respuesta = await fetch(`${process.env.API_URL}/guitarras?filters[url]=${url}&populate=imagen`)
-      const { data: guitarra } = await respuesta.json()
-  
+      const respuesta = await fetch(`http://127.0.0.1:8087/rest/porId/${url}`)
+      const guitarra = await respuesta.json()
+      
+      console.log();
       return {
           props: {
               guitarra

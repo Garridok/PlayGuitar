@@ -10,15 +10,12 @@ export default function Register1({nextReg, nextRegister, cambiarRegister}) {
 
   //Datos de formulario de registro
   //cuando descomentemos, acordar poner onSubmit en el form
-  const [nombre, setNombre] = useState('');
-  const [apellido, setApellido] = useState('');
-  const [email, setEmail] = useState('');
-  const [pass, setPass] = useState('');
+  const [nombre, setNombre] = useState("");
+  const [apellido, setApellido] = useState("");
+  const [email, setEmail] = useState("");
+  const [fechaN, setFechaN] = useState("");
+  const [pass, setPass] = useState("");
 
-  //Encry contrasena
-  const saltRound = 10;
-  const salt = bcrypt.genSaltSync(saltRound);
-  const hash = bcrypt.hashSync(pass, salt);
   
   return (
 
@@ -43,6 +40,13 @@ export default function Register1({nextReg, nextRegister, cambiarRegister}) {
               <label>Apellido: </label>
               <input type="text" name="apellido" id="apellido"
                 onChange={(e) => setApellido(e.target.value)}
+              />
+            </div>
+
+            <div className={styles.part1}>
+              <label>Fecha Nacimiento: </label>
+              <input type="date" name="date" id="date"
+                onChange={(e) => setFechaN(e.target.value)}
               />
             </div>
 
@@ -79,8 +83,10 @@ export default function Register1({nextReg, nextRegister, cambiarRegister}) {
           nombre={nombre}
           apellido={apellido}
           email={email}
-          pass={hash}
+          fechaN={fechaN}
+          pass={pass}
           nextRegister={nextRegister}
+          cambiarRegister={cambiarRegister}
         />}
     </main>
   )

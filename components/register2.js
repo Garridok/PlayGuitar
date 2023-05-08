@@ -1,9 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from '../styles/register.module.css'
 import bcrypt from 'bcryptjs';
 import axios from "axios";
 
-export default function Register2({nombre, apellido, email, pass, nextRegister}) {
+export default function Register2({nombre, apellido, email, fechaN , pass, nextRegister, cambiarRegister}) {
 
 
   // Mandar el formulario al BackEnd
@@ -13,25 +13,44 @@ export default function Register2({nombre, apellido, email, pass, nextRegister})
     const cryptPass = bcrypt.hashSync(pass, 10);
     
     const formData = {
-      nombre,
-      apellido,
-      email,
-      pass: cryptPass
+      "apellidos": apellido,
+      "email": email,
+      "fechaNacimiento": fechaN,
+      "nombre": nombre,
+      "password": cryptPass
+      // nombre,
+      // apellido,
+      // email,
+      // fechaN,
+      // pass: cryptPass,
+      // calle,
+      // postal,
+      // letra,
+      // localidad,
+      // numero,
+      // piso
     }
     
-    // try {
-    //   const response = await axios.post(
-    //     //Aqui ponemos la URL de nuestra api
-    //     "http://localhost:8080/api/register",
-    //     formData
-    //   );
-    //   console.log(response);
-    // } catch(error){
-    //   console.log(error);
-    // }
-    pass = cryptPass;
+    try {
+      const response = await axios.post(
+        //Aqui ponemos la URL de nuestra api
+        "http://127.0.0.1:8087/user/alta",
+        formData
+      );
+      console.log(response);
+    } catch(error){
+      console.log(error);
+    }
+
+    cambiarRegister() & alert("registrado")
   }
 
+  const [calle, setCalle] = useState("");
+  const [postal, setPostal] = useState("");
+  const [letra, setLetra] = useState("");
+  const [localidad, setLocalidad] = useState("");
+  const [numero, setNumero] = useState("");
+  const [piso, setPiso] = useState("");
 
 
   return (
@@ -45,7 +64,7 @@ export default function Register2({nombre, apellido, email, pass, nextRegister})
             type="text"
             name="calle"
             id="calle"
-            onChange={(e) => setNombre(e.target.value)}
+            onChange={(e) => setCalle(e.target.value)}
           />
         </div>
 
@@ -55,7 +74,7 @@ export default function Register2({nombre, apellido, email, pass, nextRegister})
             type="text"
             name="postal"
             id="postal"
-            onChange={(e) => setNombre(e.target.value)}
+            onChange={(e) => setPostal(e.target.value)}
           />
         </div>
 
@@ -65,7 +84,7 @@ export default function Register2({nombre, apellido, email, pass, nextRegister})
             type="text"
             name="letra"
             id="letra"
-            onChange={(e) => setNombre(e.target.value)}
+            onChange={(e) => setLetra(e.target.value)}
           />
         </div>
 
@@ -75,7 +94,7 @@ export default function Register2({nombre, apellido, email, pass, nextRegister})
             type="text"
             name="localidad"
             id="localidad"
-            onChange={(e) => setNombre(e.target.value)}
+            onChange={(e) => setLocalidad(e.target.value)}
           />
         </div>
 
@@ -85,7 +104,7 @@ export default function Register2({nombre, apellido, email, pass, nextRegister})
             type="number"
             name="num"
             id="num"
-            onChange={(e) => setNombre(e.target.value)}
+            onChange={(e) => setNumero(e.target.value)}
           />
         </div>
 
@@ -95,7 +114,7 @@ export default function Register2({nombre, apellido, email, pass, nextRegister})
             type="text"
             name="piso"
             id="piso"
-            onChange={(e) => setNombre(e.target.value)}
+            onChange={(e) => setPiso(e.target.value)}
           />
         </div>
         <div className={styles.btnstyle}>
@@ -103,13 +122,13 @@ export default function Register2({nombre, apellido, email, pass, nextRegister})
                   onClick={() => nextRegister()}
           >Anterior
           </button>
-          <button className={styles.btnRe2} type="submit">enviar</button>
+          <button className={styles.btnRe2} type="submit"
+          >enviar</button>
         </div>
         
         </div>
         </div>
       </form>
-      {console.log(pass)}
     </main>
   );
 }
