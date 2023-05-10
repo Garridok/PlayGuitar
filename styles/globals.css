@@ -111,8 +111,12 @@ main {
   padding: 1rem;
 
 }
-.flex{
+.ml-3{
   margin-left: 3rem;
+}
+
+.flex {
+  display: flex;
 }
 
 .mt-5{

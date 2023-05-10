@@ -9,15 +9,51 @@ function MyApp({ Component, pageProps }) {
   const [ carrito, setCarrito ] = useState(carritoLS);
   const [ paginaLista, setPaginaLista ] = useState(false)
 
+  //Para detectar si tenemos un user en local
+  const userLS = typeof window !== 'undefined' ?  JSON.parse(localStorage.getItem('user')) ?? [] : []
+  //Aqui seteamos nuestro user con los datos del local
+  const [stateUser, setStateUser] = useState(userLS)
+  
+
+  //State para manejo de componentes y poder movernos sobre ellos
+  const [login, setLogin] = useState(true);
+  const [register, setRegister] = useState(true);
+  const [nextReg, setNextReg] = useState(false);
+  //Funciones para modificar estos
+  const cambiarRegister = () => {
+    setLogin(!login);
+  };
+
+  const nextRegister = () => {
+    setNextReg(!nextReg)
+  }
+
+  const cambiarLog = () => {
+    setRegister(!register);
+  }
+  const cambiarLogManual = (e) => {
+    setRegister(e);
+  }
+
+
   useEffect( () => {
     setPaginaLista(true)
   },[])
 
+  //Cosas de inicio del carrito de compra
   useEffect( () => {
     //guardamos en el localstorage el carrito
     localStorage.setItem('carrito', JSON.stringify(carrito))
   },[carrito])
   
+  //Vamos a ver si tenemos un user ya en memoria, y si es asi que ya active que estamos logeado
+  useEffect( () => {
+    if(stateUser !== []){
+      cambiarLogManual(false);
+    }
+  },[stateUser])
+
+
   const agregarCarrito = guitarra => {
     // Comprobar si la guitarra ya esta en el carrito...
     if(carrito.some( guitarraState =>  guitarraState.id === guitarra.id )) {
@@ -55,11 +91,21 @@ const actualizarCantidad = guitarra => {
   window.localStorage.setItem('carrito', JSON.stringify( carrito ));
 }
 
+//Cosas del usuario de inicio
+
+
   return paginaLista ? <Component {...pageProps} 
     carrito={carrito}
     agregarCarrito={agregarCarrito}
     eliminarProducto={eliminarProducto}
     actualizarCantidad={actualizarCantidad}
+    stateUser={stateUser}
+    login={login}
+    register={register}
+    nextReg={nextReg}
+    cambiarRegister={cambiarRegister}
+    cambiarLog={cambiarLog}
+    nextRegister={nextRegister}
   /> : null
 }
 

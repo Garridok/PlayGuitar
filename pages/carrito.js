@@ -32,7 +32,7 @@ export default function Carrito({carrito, actualizarCantidad, eliminarProducto})
                       <Image
                         width={250}
                         height={480}
-                        src={producto.imagen}
+                        src={"https://res.cloudinary.com/dr93wiq74/image/upload/v1683214516/guitarra_08_ww39qe.jpg"}
                         alt={producto.nombre}
                       />
                     </div>
@@ -80,7 +80,7 @@ export default function Carrito({carrito, actualizarCantidad, eliminarProducto})
 
           <aside className={styles.resumen}>
             <h3>Resumen del pedido</h3>
-            <p>Total a pagar: ${total}</p>
+            <p>Total a pagar: {total}€</p>
           </aside>
         </div>
       </main>

@@ -1,36 +1,35 @@
 
 
-export default function Userlogin() {
+export default function Userlogin({cambiarLog, stateUser}) {
+
+    const { apellidos, email, fechaNacimiento, nombre } = stateUser;
+
+
   return (
     <main className="contenedor">
-            <h1 className="heading">Hola <span className="headingblack"> Antonio</span></h1>
+            <h1 className="heading">Hola <span className="headingblack"> {nombre}</span></h1>
             {/* Datos personales de la cuenta */}
                 <div className="primera">
                     <div>
                         <div className="datos">
                             <label>Nombre: </label>
-                            <input type="text" value={"Antonio"} />
+                            <input type="text" value={nombre} />
                         </div>
 
                         <div className="datos">
                             <label>Apellidos </label>
-                            <input type="text" value={"Garrido"} />
+                            <input type="text" value={apellidos} />
                         </div>
 
                         <div className="datos">
                             <label>Email</label>
-                            <input type="text" value={"Ag@gmail.com"} />
+                            <input type="text" value={email} />
                         </div>
 
                         <div className="datos">
-                            <label>Nueva Contrasena</label>
-                            <input type="password" />
+                            <label>Fecha de Nacimiento</label>
+                            <input type="date" value={fechaNacimiento} />
                         </div>
-
-                        {/* Boton para editar y guardar */}
-                        <button type="button" className="button">
-                            Editar
-                        </button>
                     </div>
 
                     {/* Datos de la direccion */}
@@ -65,6 +64,18 @@ export default function Userlogin() {
                             <input type="text" value={"2A"}/>
                         </div>
                     </div>
+                </div>
+
+                <div className='flex'>
+                    <button type="button" className="button">
+                                Editar
+                    </button>
+
+                    <button type="button" className="button"
+                            onClick={() => cambiarLog() & localStorage.removeItem('user')}
+                    >
+                                Logout
+                    </button>
                 </div>
         </main>
   )

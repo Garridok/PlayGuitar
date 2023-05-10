@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styles from '../styles/register.module.css'
 import bcrypt from 'bcryptjs';
+import { AES } from 'crypto-js';
 import axios from "axios";
 
 export default function Register2({nombre, apellido, email, fechaN , pass, nextRegister, cambiarRegister}) {
@@ -10,7 +11,13 @@ export default function Register2({nombre, apellido, email, fechaN , pass, nextR
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const cryptPass = bcrypt.hashSync(pass, 10);
+    // const cryptPass = bcrypt.hashSync(pass, 10);
+
+      //encrypt
+    const plaintext = pass;
+    const key = 'tfggarrido';
+    const cryptPass = AES.encrypt(plaintext, key).toString();
+  
     
     const formData = {
       "apellidos": apellido,

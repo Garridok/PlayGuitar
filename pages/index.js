@@ -23,7 +23,7 @@ export default function Home({guitarrasTop, guitarrasPopu, guitarrasUlti}) {
          
           <div className={styles.grid}>
                 {guitarrasTop?.map( guitarra => (
-                    <TopVentas
+                    <Guitarra
                         key={guitarra.id}
                         guitarra={guitarra}
                     />
@@ -36,7 +36,7 @@ export default function Home({guitarrasTop, guitarrasPopu, guitarrasUlti}) {
 
           <div className={styles.grid}>
                 {guitarrasPopu?.map( guitarra => (
-                    <TopVentas
+                    <Guitarra
                         key={guitarra.id}
                         guitarra={guitarra}
                     />
@@ -52,7 +52,7 @@ export default function Home({guitarrasTop, guitarrasPopu, guitarrasUlti}) {
 
           <div className={styles.grid}>
                 {guitarrasUlti?.map( guitarra => (
-                  <TopVentas
+                  <Guitarra
                   key={guitarra.id}
                   guitarra={guitarra}
                   />

@@ -6,7 +6,7 @@ import Layout from '../../components/layout'
 export default function Producto({guitarra, agregarCarrito}) {
 
   const [cantidad, setCantidad] = useState(0);
-  const { nombre, descripcion, precio, stock } = guitarra
+  const { nombre, descripcion, precio, url } = guitarra
   
   const handleSubmit = e => {
     e.preventDefault()
@@ -19,7 +19,7 @@ export default function Producto({guitarra, agregarCarrito}) {
     //Construir Objecto con la guitarra seleccionada
     const guitarraSeleccionada = {
       id: guitarra.idProducto,
-      // imagen: url,
+      url,
       nombre,
       precio,
       cantidad
@@ -32,7 +32,7 @@ export default function Producto({guitarra, agregarCarrito}) {
   return (
     <Layout title={`Guitarra ${nombre}`}>
       <div className={styles.guitarra}>
-        <Image src={"https://res.cloudinary.com/dr93wiq74/image/upload/v1683214516/guitarra_08_ww39qe.jpg"} alt={`imagen de ${nombre}`} width={600} height={400} />
+        <Image src={url} alt={`imagen de ${nombre}`} width={600} height={400} />
 
         <div className={styles.contenido}>
           <h3>{nombre}</h3>

@@ -1,73 +1,73 @@
 import styles from '../styles/login.module.css'
 import Link from 'next/link'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import axios from 'axios'
 import bcrypt from 'bcryptjs';
+import { AES } from 'crypto-js';
+import CryptoJS from 'crypto-js';
 
-export default function LoginRegister({cambiarRegister}) {
 
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+export default function Login({cambiarRegister, cambiarLog}) {
 
-  const fromData = {
-    username,
-    password
-  }
+  // Email y pass del usuario
+  const [emailUser, setEmailUser] = useState('');
+  const [passUser, setPassUser] = useState('');
 
-  // const entrar = async () => {
-  //   try {
-  //     const response = await axios.post('http://127.0.0.1:8087/user/todos', fromData);
-  
-  //     console.log(response.data);
-  //     console.log("logeado");
-  //     // Aquí puedes manejar la respuesta del servidor después del inicio de sesión exitoso
-  //   } catch (error) {
-  //     console.error(error);
-  //     // Aquí puedes manejar los errores en caso de que la solicitud falle
-  //   }
-  // }
-  // entrar();
-  
-  //necesitamos traernos la contrasena y desecriptarla.
-  const desPass = async () => {
-    try{
-      const response = await axios.get('http://127.0.0.1:8087/user/todos');
-      const appe = response.data.map( usuario => usuario.password )
-      const dbpassword = appe[0];
-      
-      const isMatch = await bcrypt.compare(password, dbpassword);
-      return isMatch;
-      
-      console.log(pass2);
-    } catch (error) {
-      console.error(error);
-    }
-  }
+  //Email y pass de DB
+  const [emailDB, setEmailDB] = useState('');
+  const [passDB, setPassDB] = useState('');
 
-  const comparePasswords = async (userPassword, storedPassword) => {
-    try {
-      const isMatch = await bcrypt.compare(userPassword, storedPassword);
-      return isMatch;
-    } catch (error) {
-      console.error(error);
-      throw new Error('Error al comparar las contraseñas');
-    }
-  };
-  
 
-  desPass();
+  //encrypt
+  // const plaintext = passUser;
+  const key = 'tfggarrido';
+  // const encryptedData = AES.encrypt(plaintext, key).toString();
+  // console.log(encryptedData);
 
-  comparePasswords(password, dbpassword);
+  //descrypt
+ 
+  //console.log(decryptedData);
+
+
+
+
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+
+
+      const response = await axios.get(
+        //Aqui ponemos la URL de nuestra api
+        `http://127.0.0.1:8087/user/findByEmail/${emailUser}`       
+        );
+
+        setEmailDB(response.data.email)
+        setPassDB(response.data.password);
+                
+        const encryptedData = passDB; // La cadena de texto obtenida en el paso anterior
+        const decryptedBytes = AES.decrypt(encryptedData, key);
+        const decryptedData = decryptedBytes.toString(CryptoJS.enc.Utf8);
+
+
+         if( passUser == decryptedData ) {
+          alert('logeado')
+          localStorage.setItem('user', JSON.stringify( response.data ));
+          cambiarLog();
+        } else {
+          alert('Vuelve a intentar porfavor')
+        }
+  } 
 
 
   return (
     <div className = {styles.wrapper}>
-      <form className={styles.formsignin}>       
+      <form className={styles.formsignin} onSubmit={ handleSubmit }>       
         <h2 className={styles.formsigninheading}>Login</h2>
-        <div className="flex">
+        <div className="ml-3">
 
-          <input type="email" className={styles.formcontrol} name="username" placeholder="Email Address" onChange={(e) => setUsername(e.target.value)}  required />
-          <input type="password" className={styles.formcontrol} name="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)}  required/>      
+          <input type="email" className={styles.formcontrol} name="username" placeholder="Email Address" onChange={(e) => setEmailUser(e.target.value)}  required />
+          <input type="password" className={styles.formcontrol} name="password" placeholder="Password" onChange={(e) => setPassUser(e.target.value)}  required/>      
         
           <button className={styles.btnlogin} type="submit">Login</button>
 
@@ -80,3 +80,15 @@ export default function LoginRegister({cambiarRegister}) {
   </div>
   )
 }
+
+// export async function getServerSideProps() {
+//   const url='http://127.0.0.1:8087/user/todos'
+//   const respuesta = await fetch(url)
+
+//   const {data: email} = await respuesta.json(); 
+//   return {
+//       props: {
+//           email
+//       }
+//   }
+// }
