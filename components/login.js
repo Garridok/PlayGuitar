@@ -2,7 +2,6 @@ import styles from '../styles/login.module.css'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
-import bcrypt from 'bcryptjs';
 import { AES } from 'crypto-js';
 import CryptoJS from 'crypto-js';
 
@@ -28,36 +27,35 @@ export default function Login({cambiarRegister, cambiarLog}) {
  
   //console.log(decryptedData);
 
-
+  const encryptedData = passDB; // La cadena de texto obtenida en el paso anterior
+  const decryptedBytes = AES.decrypt(encryptedData, key);
+  const decryptedData = decryptedBytes.toString(CryptoJS.enc.Utf8);
 
 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-
-
-      const response = await axios.get(
-        //Aqui ponemos la URL de nuestra api
-        `http://127.0.0.1:8087/user/findByEmail/${emailUser}`       
-        );
-
-        setEmailDB(response.data.email)
-        setPassDB(response.data.password);
-                
-        const encryptedData = passDB; // La cadena de texto obtenida en el paso anterior
-        const decryptedBytes = AES.decrypt(encryptedData, key);
-        const decryptedData = decryptedBytes.toString(CryptoJS.enc.Utf8);
-
-
-         if( passUser == decryptedData ) {
-          alert('logeado')
-          localStorage.setItem('user', JSON.stringify( response.data ));
-          cambiarLog();
-        } else {
-          alert('Vuelve a intentar porfavor')
-        }
-  } 
+  
+    try {
+      const response = await axios.get(`http://127.0.0.1:8087/user/findByEmail/${emailUser}`);
+      const encryptedData = response.data.password;
+      const decryptedBytes = AES.decrypt(encryptedData, key);
+      const decryptedData = decryptedBytes.toString(CryptoJS.enc.Utf8);
+  
+      if (passUser === decryptedData) {
+        alert('logeado');
+        localStorage.setItem('user', JSON.stringify(response.data));
+        cambiarLog();
+      } else {
+        alert('Vuelve a intentar por favor');
+      }
+    } catch (error) {
+      console.error(error);
+      // Manejar el error adecuadamente
+    }
+  };
+  
+  
 
 
   return (

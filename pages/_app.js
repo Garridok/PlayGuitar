@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { UserProvider } from '../components/UserContext';
 import '../styles/globals.css'
 
 function MyApp({ Component, pageProps }) {
@@ -13,7 +14,7 @@ function MyApp({ Component, pageProps }) {
   const userLS = typeof window !== 'undefined' ?  JSON.parse(localStorage.getItem('user')) ?? [] : []
   //Aqui seteamos nuestro user con los datos del local
   const [stateUser, setStateUser] = useState(userLS)
-  
+  console.log(userLS);
 
   //State para manejo de componentes y poder movernos sobre ellos
   const [login, setLogin] = useState(true);
@@ -46,12 +47,14 @@ function MyApp({ Component, pageProps }) {
     localStorage.setItem('carrito', JSON.stringify(carrito))
   },[carrito])
   
-  //Vamos a ver si tenemos un user ya en memoria, y si es asi que ya active que estamos logeado
+  // Vamos a ver si tenemos un user ya en memoria, y si es asi que ya active que estamos logeado
   useEffect( () => {
-    if(stateUser !== []){
-      cambiarLogManual(false);
+    if(userLS == {}){
+      cambiarLogManual(true);
+    }else {
+      cambiarLogManual(false)
     }
-  },[stateUser])
+  },[])
 
 
   const agregarCarrito = guitarra => {

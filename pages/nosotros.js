@@ -15,26 +15,12 @@ export default function Nosotros() {
           <Image src='/img/nosotros.jpg' width={1000} height={800} alt='nosotros img' />
           <div>
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut dictum
-              tempus est, nec dapibus sapien varius id. Mauris ullamcorper id
-              libero nec faucibus. Praesent elit ipsum, ultrices id nibh in,
-              turpis at est. Aenean at odio nec justo molestie dignissim id nec
-              sapien. Nam nec consequat arcu. Aenean eget ligula efficitur,
-              posuere quam at, pulvinar dui. Integer condimentum, sem quis
-              elementum sagittis, nisi ligula aliquet urna, a gravida justo
-              augue in odio.
+            ¡Bienvenido a nuestra tienda de guitarras eléctricas, donde el sonido y el estilo se fusionan en armonía! En nuestro exclusivo espacio, los amantes de la música encontrarán el paraíso que siempre han buscado. Sumérgete en un universo de emociones musicales mientras exploras nuestra amplia selección de guitarras eléctricas de alta calidad, diseñadas para satisfacer las necesidades de músicos de todos los niveles.
+            Nuestro experimentado y apasionado equipo de especialistas está listo para guiarte en tu viaje musical.
             </p>
 
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut dictum
-              tempus est, nec dapibus sapien varius id. Mauris ullamcorper id
-              libero nec faucibus. Praesent elit ipsum, ultrices id nibh in,
-              commodo ullamcorper libero. Aliquam libero quam, laoreet et odio
-              vel, dictum commodo ipsum. Integer efficitur, odio posuere
-              sapien. Nam nec consequat arcu. Aenean eget ligula efficitur,
-              posuere quam at, pulvinar dui. Integer condimentum, sem quis
-              elementum sagittis, nisi ligula aliquet urna, a gravida justo
-              augue in odio. Ut in tincidunt lacus.
+            Ya seas un principiante entusiasmado o un guitarrista experimentado, te brindaremos asesoramiento personalizado para encontrar el instrumento perfecto que se adapte a tu estilo y preferencias. Además, contamos con una amplia gama de amplificadores, efectos y accesorios que te permitirán personalizar tu sonido y llevar tus interpretaciones al siguiente nivel.
             </p>
           </div>
         </div>
