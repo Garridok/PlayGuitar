@@ -11,10 +11,16 @@ function MyApp({ Component, pageProps }) {
   const [ paginaLista, setPaginaLista ] = useState(false)
 
   //Para detectar si tenemos un user en local
+
+  
   const userLS = typeof window !== 'undefined' ?  JSON.parse(localStorage.getItem('user')) ?? [] : []
   //Aqui seteamos nuestro user con los datos del local
   const [stateUser, setStateUser] = useState(userLS)
-  console.log(userLS);
+  useEffect(() => {
+    const userLS = typeof window !== 'undefined' ?  JSON.parse(localStorage.getItem('user')) ?? [] : []
+    setStateUser(userLS)
+  }, [stateUser])
+ 
 
   //State para manejo de componentes y poder movernos sobre ellos
   const [login, setLogin] = useState(true);
@@ -97,7 +103,7 @@ const actualizarCantidad = guitarra => {
 //Cosas del usuario de inicio
 
 
-  return paginaLista ? <Component {...pageProps} 
+  return paginaLista ?<Component {...pageProps} 
     carrito={carrito}
     agregarCarrito={agregarCarrito}
     eliminarProducto={eliminarProducto}

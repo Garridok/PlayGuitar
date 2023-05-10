@@ -1,14 +1,13 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 // import { UserContext } from "./UserContext";
 
 export default function Userlogin({cambiarLog, stateUser}) {
 
-
     
-
-    // const { stateUser } = useContext(UserContext);
-    console.log(stateUser);
-    const { apellidos, email, fechaNacimiento, nombre } = stateUser;
+const {nombre, apellidos, email, fechaNacimiento} = stateUser
+    
+    
+    
 
   return (
     <main className="contenedor">
