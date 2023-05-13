@@ -7,11 +7,19 @@ export default function Userlogin({cambiarLog, stateUser, actualizarUser}) {
 
 useEffect(() => {
         const userLS = typeof window !== 'undefined' ? JSON.parse(localStorage.getItem('user')) ?? [] : [];
+        // const parseUserLS = JSON.parse(userLS)
+        console.log(userLS);
+        // console.log(typeof userLS);
         setNewUser(userLS);
+        console.log(userLS.direcciones);
 }, []);
 
 const {nombre, apellidos, email, fechaNacimiento} = newUser
-    
+// const {direcciones} = 
+const {calle} = newUser?.direcciones[0]
+
+
+
 const logoutFun = () => {
     localStorage.setItem('user', JSON.stringify( [{}] ));
     cambiarLog(); 
@@ -49,32 +57,33 @@ const logoutFun = () => {
                     <div>
                         <div className="datos">
                             <label>Calle: </label>
-                            <input type="text" value={"Antonio"} />
+                            <input type="text" value={calle} />
+                        
                         </div>
 
                         <div className="datos">
                             <label>Codigo postal </label>
-                            <input type="number" value={23004} />
+                            {/* <input type="number" value={codigoPostal} /> */}
                         </div>
 
                         <div className="datos">
                             <label>letra</label>
-                            <input type="text" value={"A"} />
+                            {/* <input type="text" value={letra} /> */}
                         </div>
 
                         <div className="datos">
                             <label>Localidad</label>
-                            <input type="text" />
+                            {/* <input type="text"  value={localidad}/> */}
                         </div>
 
                         <div className="datos">
                             <label>Numero</label>
-                            <input type="number" value={10} />
+                            {/* <input type="number" value={numero} /> */}
                         </div>
 
                         <div className="datos">
                             <label>Piso</label>
-                            <input type="text" value={"2A"}/>
+                            {/* <input type="text" value={piso}/> */}
                         </div>
                     </div>
                 </div>

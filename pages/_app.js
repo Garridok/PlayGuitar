@@ -6,6 +6,8 @@ function MyApp({ Component, pageProps }) {
 
   //Para detectar si el carrito esta en local
   const carritoLS = typeof window !== 'undefined' ?  JSON.parse(localStorage.getItem('carrito')) ?? [] : []
+  const userLS = typeof window !== 'undefined' ?  JSON.parse(localStorage.getItem('user')) ?? [] : []
+  
   //Aqui setteamos el carrito, o lo mandamos vacio, en funcion de arriba
   const [ carrito, setCarrito ] = useState(carritoLS);
   const [ paginaLista, setPaginaLista ] = useState(false)
@@ -13,7 +15,6 @@ function MyApp({ Component, pageProps }) {
   //Para detectar si tenemos un user en local
 
   
-  const userLS = typeof window !== 'undefined' ?  JSON.parse(localStorage.getItem('user')) ?? [] : []
   //Aqui seteamos nuestro user con los datos del local
   const [stateUser, setStateUser] = useState(userLS)
   useEffect(() => {

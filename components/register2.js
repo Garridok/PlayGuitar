@@ -6,6 +6,12 @@ import axios from "axios";
 
 export default function Register2({nombre, apellido, email, fechaN , pass, nextRegister, cambiarRegister}) {
 
+  const [calle, setCalle] = useState("");
+  const [postal, setPostal] = useState("");
+  const [letra, setLetra] = useState("");
+  const [localidad, setLocalidad] = useState("");
+  const [numero, setNumero] = useState("");
+  const [piso, setPiso] = useState("");
 
   // Mandar el formulario al BackEnd
   const handleSubmit = async (e) => {
@@ -24,18 +30,17 @@ export default function Register2({nombre, apellido, email, fechaN , pass, nextR
       "email": email,
       "fechaNacimiento": fechaN,
       "nombre": nombre,
-      "password": cryptPass
-      // nombre,
-      // apellido,
-      // email,
-      // fechaN,
-      // pass: cryptPass,
-      // calle,
-      // postal,
-      // letra,
-      // localidad,
-      // numero,
-      // piso
+      "password": cryptPass,
+      "direcciones": [
+        {
+        "calle": calle,
+        "codigoPostal": postal,
+        "letra": letra,
+        "localidad": localidad,
+        "numero": numero,
+        "piso": piso
+      }
+    ]
     }
     
     try {
@@ -52,12 +57,7 @@ export default function Register2({nombre, apellido, email, fechaN , pass, nextR
     cambiarRegister() & alert("registrado")
   }
 
-  const [calle, setCalle] = useState("");
-  const [postal, setPostal] = useState("");
-  const [letra, setLetra] = useState("");
-  const [localidad, setLocalidad] = useState("");
-  const [numero, setNumero] = useState("");
-  const [piso, setPiso] = useState("");
+
 
 
   return (
@@ -71,7 +71,7 @@ export default function Register2({nombre, apellido, email, fechaN , pass, nextR
             type="text"
             name="calle"
             id="calle"
-            onChange={(e) => setCalle(e.target.value)}
+            onChange={(e) => setCalle(e.target.value)} required
           />
         </div>
 
@@ -81,7 +81,7 @@ export default function Register2({nombre, apellido, email, fechaN , pass, nextR
             type="text"
             name="postal"
             id="postal"
-            onChange={(e) => setPostal(e.target.value)}
+            onChange={(e) => setPostal(e.target.value)} required
           />
         </div>
 
@@ -91,7 +91,7 @@ export default function Register2({nombre, apellido, email, fechaN , pass, nextR
             type="text"
             name="letra"
             id="letra"
-            onChange={(e) => setLetra(e.target.value)}
+            onChange={(e) => setLetra(e.target.value)} required
           />
         </div>
 
@@ -101,7 +101,7 @@ export default function Register2({nombre, apellido, email, fechaN , pass, nextR
             type="text"
             name="localidad"
             id="localidad"
-            onChange={(e) => setLocalidad(e.target.value)}
+            onChange={(e) => setLocalidad(e.target.value)} required
           />
         </div>
 
@@ -111,7 +111,7 @@ export default function Register2({nombre, apellido, email, fechaN , pass, nextR
             type="number"
             name="num"
             id="num"
-            onChange={(e) => setNumero(e.target.value)}
+            onChange={(e) => setNumero(e.target.value)} required
           />
         </div>
 
@@ -121,7 +121,7 @@ export default function Register2({nombre, apellido, email, fechaN , pass, nextR
             type="text"
             name="piso"
             id="piso"
-            onChange={(e) => setPiso(e.target.value)}
+            onChange={(e) => setPiso(e.target.value)} required
           />
         </div>
         <div className={styles.btnstyle}>

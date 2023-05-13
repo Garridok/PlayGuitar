@@ -32,35 +32,35 @@ export default function Register1({nextReg, nextRegister, cambiarRegister}) {
             <div className={styles.part1}>
               <label>Nombre: </label>
               <input type="text" name="name" id="name"
-                onChange={(e) => setNombre(e.target.value)}
+                onChange={(e) => setNombre(e.target.value)} required
               />
             </div>
             
             <div className={styles.part1}>
               <label>Apellido: </label>
               <input type="text" name="apellido" id="apellido"
-                onChange={(e) => setApellido(e.target.value)}
+                onChange={(e) => setApellido(e.target.value)} required
               />
             </div>
 
             <div className={styles.part1}>
               <label>Fecha Nacimiento: </label>
               <input type="date" name="date" id="date"
-                onChange={(e) => setFechaN(e.target.value)}
+                onChange={(e) => setFechaN(e.target.value)} required
               />
             </div>
 
             <div className={styles.part1}>
               <label>Email:   </label>
               <input type="email" name="email" id="email"
-                onChange={(e) => setEmail(e.target.value)}
+                onChange={(e) => setEmail(e.target.value)} required
               />
             </div>
 
             <div className={styles.part1}>
               <label>Contrasena: </label>
               <input type="password" name="pass" id="pass" 
-                onChange={(e) => setPass(e.target.value)}
+                onChange={(e) => setPass(e.target.value)} required
               />
             </div>
           </div>
