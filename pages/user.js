@@ -5,7 +5,7 @@ import Register1 from "../components/register1"
 import LoginRegister from "../components/loginRegiser"
 import { useState } from "react"
 
-export default function user({register, login, nextReg, cambiarRegister, cambiarLog, nextRegister, stateUser}) {
+export default function user({register, login, nextReg, cambiarRegister, cambiarLog, nextRegister, stateUser, actualizarCarro}) {
 
 
   return (
@@ -14,8 +14,10 @@ export default function user({register, login, nextReg, cambiarRegister, cambiar
     description={'Ventas de guitarras, y blog de musica'}
     >
         {/* Si el usuario no esta logeado */}
-    {register ? <LoginRegister login={login} nextReg={nextReg} nextRegister={nextRegister} cambiarRegister={cambiarRegister} cambiarLog={cambiarLog} />
-              :   <Userlogin cambiarLog={cambiarLog} stateUser={stateUser} />
+    {register ? <LoginRegister login={login} nextReg={nextReg} nextRegister={nextRegister} cambiarRegister={cambiarRegister} cambiarLog={cambiarLog} 
+    actualizarCarro={actualizarCarro}
+    />
+              :   <Userlogin cambiarLog={cambiarLog} stateUser={stateUser}          actualizarCarro= {actualizarCarro} />
   }
 
         

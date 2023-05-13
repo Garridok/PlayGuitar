@@ -12,7 +12,8 @@ function MyApp({ Component, pageProps }) {
   const [ paginaLista, setPaginaLista ] = useState(false)
 
   //Para detectar si tenemos un user en local
-
+  //Fases del carrito
+  const [carroSegundo, setCarroSegundo] = useState(false);
   
   //Aqui seteamos nuestro user con los datos del local
   const [stateUser, setStateUser] = useState(userLS)
@@ -28,6 +29,10 @@ function MyApp({ Component, pageProps }) {
   const [register, setRegister] = useState(true);
   const [nextReg, setNextReg] = useState(false);
   //Funciones para modificar estos
+  const actualizarCarro = () => {
+    setCarroSegundo(!carroSegundo)
+  }
+
   const actualizarUser = (user) => {
     setStateUser(user)
   }
@@ -67,9 +72,11 @@ function MyApp({ Component, pageProps }) {
   useEffect( () => {
     if(Object.keys(stateUser).length > 0){
       cambiarLogManual(false);
+      actualizarCarro(false)
       console.log(Object.keys(stateUser).length > 0)
     }else {
       cambiarLogManual(true)
+      actualizarCarro(true)
       console.log(stateUser.length);
     }
   },[])
@@ -128,6 +135,8 @@ const actualizarCantidad = guitarra => {
     cambiarRegister={cambiarRegister}
     cambiarLog={cambiarLog}
     nextRegister={nextRegister}
+    actualizarCarro={actualizarCarro}
+    carroSegundo={carroSegundo}
   /> : null
 }
 

@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 // import { UserContext } from "./UserContext";
 
-export default function Userlogin({cambiarLog, stateUser, actualizarUser}) {
+export default function Userlogin({cambiarLog, actualizarCarro}) {
 
     const [newUser, setNewUser] = useState({
         nombre: '',
@@ -24,14 +24,14 @@ useEffect(() => {
         
 }, []);
 
-const {nombre, apellidos, email, fechaNacimiento, direcciones} = newUser
-console.log(nombre);
-console.log(direcciones);
+const {nombre, apellidos, email, fechaNacimiento, direcciones=[{}]} = newUser
 const {calle, codigoPostal, letra, localidad, numero, piso} = direcciones[0];
 
 const logoutFun = () => {
     localStorage.setItem('user', JSON.stringify( {} ));
-    cambiarLog(); 
+    cambiarLog();
+    actualizarCarro();
+    
 }
     
 
