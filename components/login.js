@@ -6,7 +6,7 @@ import { AES } from 'crypto-js';
 import CryptoJS from 'crypto-js';
 
 
-export default function Login({cambiarRegister, cambiarLog}) {
+export default function Login({cambiarRegister, cambiarLog, iniciarSesion}) {
 
   // Email y pass del usuario
   const [emailUser, setEmailUser] = useState('');
@@ -41,7 +41,7 @@ export default function Login({cambiarRegister, cambiarLog}) {
       const encryptedData = response.data.password;
       const decryptedBytes = AES.decrypt(encryptedData, key);
       const decryptedData = decryptedBytes.toString(CryptoJS.enc.Utf8);
-  
+
       if (passUser === decryptedData) {
         alert('logeado');
         localStorage.setItem('user', JSON.stringify(response.data));
@@ -49,6 +49,7 @@ export default function Login({cambiarRegister, cambiarLog}) {
       } else {
         alert('Vuelve a intentar por favor');
       }
+
     } catch (error) {
       console.error(error);
       // Manejar el error adecuadamente

@@ -19,7 +19,7 @@ function MyApp({ Component, pageProps }) {
   useEffect(() => {
     const userLS = typeof window !== 'undefined' ?  JSON.parse(localStorage.getItem('user')) ?? [] : []
     setStateUser(userLS)
-  }, [stateUser])
+  }, [])
  
 
   //State para manejo de componentes y poder movernos sobre ellos
@@ -27,6 +27,10 @@ function MyApp({ Component, pageProps }) {
   const [register, setRegister] = useState(true);
   const [nextReg, setNextReg] = useState(false);
   //Funciones para modificar estos
+  const actualizarUser = (user) => {
+    setStateUser(user)
+  }
+
   const cambiarRegister = () => {
     setLogin(!login);
   };
@@ -55,10 +59,12 @@ function MyApp({ Component, pageProps }) {
   
   // Vamos a ver si tenemos un user ya en memoria, y si es asi que ya active que estamos logeado
   useEffect( () => {
-    if(userLS == {}){
+    if(userLS.length === 1){
       cambiarLogManual(true);
+      console.log(userLS.length)
     }else {
       cambiarLogManual(false)
+      console.log(userLS.length);
     }
   },[])
 
@@ -109,6 +115,7 @@ const actualizarCantidad = guitarra => {
     eliminarProducto={eliminarProducto}
     actualizarCantidad={actualizarCantidad}
     stateUser={stateUser}
+    actualizarUser={actualizarUser}
     login={login}
     register={register}
     nextReg={nextReg}

@@ -1,12 +1,21 @@
 import { useContext, useEffect, useState } from "react";
 // import { UserContext } from "./UserContext";
 
-export default function Userlogin({cambiarLog, stateUser}) {
+export default function Userlogin({cambiarLog, stateUser, actualizarUser}) {
 
+    const [newUser, setNewUser] = useState([])
+
+useEffect(() => {
+        const userLS = typeof window !== 'undefined' ? JSON.parse(localStorage.getItem('user')) ?? [] : [];
+        setNewUser(userLS);
+}, []);
+
+const {nombre, apellidos, email, fechaNacimiento} = newUser
     
-const {nombre, apellidos, email, fechaNacimiento} = stateUser
-    
-    
+const logoutFun = () => {
+    localStorage.setItem('user', JSON.stringify( [{}] ));
+    cambiarLog(); 
+}
     
 
   return (
@@ -76,7 +85,7 @@ const {nombre, apellidos, email, fechaNacimiento} = stateUser
                     </button>
 
                     <button type="button" className="button"
-                            onClick={() => cambiarLog() & localStorage.removeItem('user')}
+                            onClick={() => logoutFun()}
                     >
                                 Logout
                     </button>
