@@ -3,28 +3,29 @@ import { useContext, useEffect, useState } from "react";
 
 export default function Userlogin({cambiarLog, stateUser, actualizarUser}) {
 
-    const [newUser, setNewUser] = useState([])
+    const [newUser, setNewUser] = useState({
+        nombre: '',
+        apellidos: '',
+        email: '',
+        fechaNacimiento: '',
+        direcciones: [{}]
+    })
 
 useEffect(() => {
-        const userLS = typeof window !== 'undefined' ? JSON.parse(localStorage.getItem('user')) ?? [] : [];
-        // const parseUserLS = JSON.parse(userLS)
-        console.log(userLS);
-        // console.log(typeof userLS);
+        const userLS = typeof window !== 'undefined' ? JSON.parse(localStorage.getItem('user')) ?? {} : {};
         setNewUser(userLS);
-        console.log(userLS.direcciones);
+        
 }, []);
 
-const {nombre, apellidos, email, fechaNacimiento} = newUser
-// const {direcciones} = 
-const {calle} = newUser?.direcciones[0]
-
-
+const {nombre, apellidos, email, fechaNacimiento, direcciones} = newUser
+const {calle, codigoPostal, letra, localidad, numero, piso} = direcciones[0];
 
 const logoutFun = () => {
-    localStorage.setItem('user', JSON.stringify( [{}] ));
+    localStorage.setItem('user', JSON.stringify( {} ));
     cambiarLog(); 
 }
     
+
 
   return (
     <main className="contenedor">
@@ -63,27 +64,27 @@ const logoutFun = () => {
 
                         <div className="datos">
                             <label>Codigo postal </label>
-                            {/* <input type="number" value={codigoPostal} /> */}
+                            <input type="number" value={codigoPostal} />
                         </div>
 
                         <div className="datos">
                             <label>letra</label>
-                            {/* <input type="text" value={letra} /> */}
+                            <input type="text" value={letra} />
                         </div>
 
                         <div className="datos">
                             <label>Localidad</label>
-                            {/* <input type="text"  value={localidad}/> */}
+                            <input type="text"  value={localidad}/>
                         </div>
 
                         <div className="datos">
                             <label>Numero</label>
-                            {/* <input type="number" value={numero} /> */}
+                            <input type="number" value={numero} />
                         </div>
 
                         <div className="datos">
                             <label>Piso</label>
-                            {/* <input type="text" value={piso}/> */}
+                            <input type="text" value={piso}/>
                         </div>
                     </div>
                 </div>

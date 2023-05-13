@@ -1,12 +1,11 @@
 import { useState, useEffect } from 'react'
-import { UserProvider } from '../components/UserContext';
 import '../styles/globals.css'
 
 function MyApp({ Component, pageProps }) {
 
   //Para detectar si el carrito esta en local
   const carritoLS = typeof window !== 'undefined' ?  JSON.parse(localStorage.getItem('carrito')) ?? [] : []
-  const userLS = typeof window !== 'undefined' ?  JSON.parse(localStorage.getItem('user')) ?? [] : []
+  const userLS = typeof window !== 'undefined' ?  JSON.parse(localStorage.getItem('user')) ?? {} : {}
   
   //Aqui setteamos el carrito, o lo mandamos vacio, en funcion de arriba
   const [ carrito, setCarrito ] = useState(carritoLS);
@@ -16,10 +15,12 @@ function MyApp({ Component, pageProps }) {
 
   
   //Aqui seteamos nuestro user con los datos del local
-  const [stateUser, setStateUser] = useState(userLS)
+  const [stateUser, setStateUser] = useState({})
+
   useEffect(() => {
-    const userLS = typeof window !== 'undefined' ?  JSON.parse(localStorage.getItem('user')) ?? [] : []
+    const userLS = typeof window !== 'undefined' ?  JSON.parse(localStorage.getItem('user')) ?? {} : {}
     setStateUser(userLS)
+    
   }, [])
  
 
