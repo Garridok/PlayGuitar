@@ -5,7 +5,7 @@ function MyApp({ Component, pageProps }) {
 
   //Para detectar si el carrito esta en local
   const carritoLS = typeof window !== 'undefined' ?  JSON.parse(localStorage.getItem('carrito')) ?? [] : []
-  const userLS = typeof window !== 'undefined' ?  JSON.parse(localStorage.getItem('user')) ?? {} : {}
+  const userLS = typeof window !== 'undefined' ?  JSON.parse(localStorage.getItem('user')) ?? [] : []
   
   //Aqui setteamos el carrito, o lo mandamos vacio, en funcion de arriba
   const [ carrito, setCarrito ] = useState(carritoLS);
@@ -15,12 +15,11 @@ function MyApp({ Component, pageProps }) {
 
   
   //Aqui seteamos nuestro user con los datos del local
-  const [stateUser, setStateUser] = useState({})
+  const [stateUser, setStateUser] = useState(userLS)
 
   useEffect(() => {
-    const userLS = typeof window !== 'undefined' ?  JSON.parse(localStorage.getItem('user')) ?? {} : {}
+    const userLS = typeof window !== 'undefined' ?  JSON.parse(localStorage.getItem('user')) ?? [] : []
     setStateUser(userLS)
-    
   }, [])
  
 
@@ -58,15 +57,20 @@ function MyApp({ Component, pageProps }) {
     //guardamos en el localstorage el carrito
     localStorage.setItem('carrito', JSON.stringify(carrito))
   },[carrito])
+
+  useEffect( () => {
+    //guardamos en el localstorage el carrito
+    localStorage.setItem('user', JSON.stringify(stateUser))
+  },[stateUser])
   
   // Vamos a ver si tenemos un user ya en memoria, y si es asi que ya active que estamos logeado
   useEffect( () => {
-    if(userLS.length === 1){
-      cambiarLogManual(true);
-      console.log(userLS.length)
+    if(Object.keys(stateUser).length > 0){
+      cambiarLogManual(false);
+      console.log(Object.keys(stateUser).length > 0)
     }else {
-      cambiarLogManual(false)
-      console.log(userLS.length);
+      cambiarLogManual(true)
+      console.log(stateUser.length);
     }
   },[])
 

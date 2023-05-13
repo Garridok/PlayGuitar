@@ -8,16 +8,25 @@ export default function Userlogin({cambiarLog, stateUser, actualizarUser}) {
         apellidos: '',
         email: '',
         fechaNacimiento: '',
-        direcciones: [{}]
+        direcciones: [{
+            calle: '',
+            codigoPostal: 0,
+            letra: '',
+            localidad: '',
+            numero: 0,
+            piso: 0
+        }]
     })
 
 useEffect(() => {
-        const userLS = typeof window !== 'undefined' ? JSON.parse(localStorage.getItem('user')) ?? {} : {};
+        const userLS = typeof window !== 'undefined' ? JSON.parse(localStorage.getItem('user')) ?? [] : [];
         setNewUser(userLS);
         
 }, []);
 
 const {nombre, apellidos, email, fechaNacimiento, direcciones} = newUser
+console.log(nombre);
+console.log(direcciones);
 const {calle, codigoPostal, letra, localidad, numero, piso} = direcciones[0];
 
 const logoutFun = () => {

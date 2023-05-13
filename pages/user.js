@@ -17,6 +17,7 @@ export default function user({register, login, nextReg, cambiarRegister, cambiar
     {register ? <LoginRegister login={login} nextReg={nextReg} nextRegister={nextRegister} cambiarRegister={cambiarRegister} cambiarLog={cambiarLog} />
               :   <Userlogin cambiarLog={cambiarLog} stateUser={stateUser} />
   }
+
         
     </Layout>
   )
