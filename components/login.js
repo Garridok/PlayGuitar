@@ -46,7 +46,7 @@ export default function Login({cambiarRegister, cambiarLog, iniciarSesion, actua
         alert('logeado');
         localStorage.setItem('user', JSON.stringify(response.data));
         cambiarLog();
-        actualizarCarro();
+        actualizarCarro(false);
       } else {
         alert('Vuelve a intentar por favor');
       }

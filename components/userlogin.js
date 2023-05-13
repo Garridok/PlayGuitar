@@ -30,7 +30,7 @@ const {calle, codigoPostal, letra, localidad, numero, piso} = direcciones[0];
 const logoutFun = () => {
     localStorage.setItem('user', JSON.stringify( {} ));
     cambiarLog();
-    actualizarCarro();
+    actualizarCarro(true);
     
 }
     

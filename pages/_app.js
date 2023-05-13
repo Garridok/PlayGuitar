@@ -29,9 +29,13 @@ function MyApp({ Component, pageProps }) {
   const [register, setRegister] = useState(true);
   const [nextReg, setNextReg] = useState(false);
   //Funciones para modificar estos
-  const actualizarCarro = () => {
-    setCarroSegundo(!carroSegundo)
+  const actualizarCarro = (e) => {
+    setCarroSegundo(e)
   }
+  
+
+
+
 
   const actualizarUser = (user) => {
     setStateUser(user)
