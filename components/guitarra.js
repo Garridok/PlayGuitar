@@ -9,7 +9,7 @@ export default function Guitarra({guitarra}) {
   
   return (
   <div className={styles.guitarra}>
-    <Image src={url} width={600} height={400} alt={`Imagen de la guitarra ${nombre}`} />
+    <Image src={url} style={{width: "600px", height: "400px", objectFit: "cover"}} width={600} height={400} alt={`Imagen de la guitarra ${nombre}`} />
 
     <div className={styles.contenido}>
       <h3>{nombre}</h3>

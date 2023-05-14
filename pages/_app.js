@@ -128,6 +128,7 @@ const actualizarCantidad = guitarra => {
 
   return paginaLista ?<Component {...pageProps} 
     carrito={carrito}
+    setCarrito={setCarrito}
     agregarCarrito={agregarCarrito}
     eliminarProducto={eliminarProducto}
     actualizarCantidad={actualizarCantidad}

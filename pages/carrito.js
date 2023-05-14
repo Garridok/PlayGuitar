@@ -4,7 +4,7 @@ import Link from 'next/link'
 import Layout from '../components/layout'
 import styles from '../styles/carrito.module.css'
 
-export default function Carrito({carrito, actualizarCantidad, eliminarProducto, carroSegundo}) {
+export default function Carrito({carrito, actualizarCantidad, eliminarProducto, carroSegundo, setCarrito}) {
 
     const [total, setTotal] = useState(0)
     
@@ -36,6 +36,41 @@ useEffect(() => {
 const {nombre, apellidos, email, fechaNacimiento, direcciones=[]} = newUser
 const {calle='', codigoPostal=0, letra='', localidad='', numero=0, piso=0} = direcciones[0] || {};
 
+const [ compra, setCompra ] = useState(true);
+const realizarCompra = () => {
+
+  if(carrito.length > 0) {
+    setCompra(false)
+    carrito?.map( carr => {
+      console.log(carr.id);
+      eliminarProducto( carr.id )
+      setCarrito([])
+    })
+  } else {
+    alert('No hay productos en el carrito')
+  }
+
+
+  //eliminarProducto(producto.id)
+  
+}
+
+console.log(carrito.length)
+
+useEffect(() => {
+  if (!compra) {
+    setCompra(true);
+    const timer = setTimeout(() => {
+    }, 1000); // Espera de 1 segundo (1000 milisegundos)
+    
+    return () => {clearTimeout(timer); alert('Compra realizada')};
+    // Limpiar el temporizador si el efecto se desmonta antes de que se complete el tiempo de espera
+  }
+  if(!compra){
+
+  }
+}, [compra]);
+
 
 
   return (
@@ -59,7 +94,7 @@ const {calle='', codigoPostal=0, letra='', localidad='', numero=0, piso=0} = dir
                       <Image
                         width={250}
                         height={480}
-                        src={"https://res.cloudinary.com/dr93wiq74/image/upload/v1683214516/guitarra_08_ww39qe.jpg"}
+                        src={producto.url}
                         alt={producto.nombre}
                       />
                     </div>
@@ -127,9 +162,19 @@ const {calle='', codigoPostal=0, letra='', localidad='', numero=0, piso=0} = dir
               <p>Localidad: {localidad}</p>
               <p>Numero: {numero}</p>
               <p>Piso: {piso}</p>
-              <button type='button'>
-                Realizar Compra
-              </button>
+              {compra ? <div>
+                            <button type='button' onClick={() => realizarCompra() }>
+                              Realizar Compra
+                            </button>
+                        </div> : 
+                                  <div>
+                                    <div className={styles.loading}>Loading&#8230 Compra Realizada;</div>
+                                    <h3>Compra realizada</h3>
+                                  </div>
+                                  
+                                  }
+              
+              
             </div>
             
             }
