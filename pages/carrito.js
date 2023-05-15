@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
+import emailjs from 'emailjs-com';
 import Layout from '../components/layout'
 import styles from '../styles/carrito.module.css'
 
@@ -33,14 +34,16 @@ useEffect(() => {
       const userLS = typeof window !== 'undefined' ? JSON.parse(localStorage.getItem('user')) ?? [] : [];
       setNewUser(userLS); 
 }, []);
+
 const {nombre, apellidos, email, fechaNacimiento, direcciones=[]} = newUser
 const {calle='', codigoPostal=0, letra='', localidad='', numero=0, piso=0} = direcciones[0] || {};
 
 const [ compra, setCompra ] = useState(true);
-const realizarCompra = () => {
 
+const realizarCompra = () => {
   if(carrito.length > 0) {
     setCompra(false)
+    enviarCorreo(newUser, carrito)
     carrito?.map( carr => {
       console.log(carr.id);
       eliminarProducto( carr.id )
@@ -49,13 +52,8 @@ const realizarCompra = () => {
   } else {
     alert('No hay productos en el carrito')
   }
-
-
-  //eliminarProducto(producto.id)
-  
 }
 
-console.log(carrito.length)
 
 useEffect(() => {
   if (!compra) {
@@ -63,13 +61,35 @@ useEffect(() => {
     const timer = setTimeout(() => {
     }, 1000); // Espera de 1 segundo (1000 milisegundos)
     
-    return () => {clearTimeout(timer); alert('Compra realizada')};
+    return () => {clearTimeout(timer); alert('Compra realizada')}
     // Limpiar el temporizador si el efecto se desmonta antes de que se complete el tiempo de espera
   }
-  if(!compra){
+}, [compra])
 
+
+//Correo electronico
+const enviarCorreo = async (user, carro) => {
+  try {
+    const templateParams = {
+      // Proporciona los datos necesarios para reemplazar en la plantilla
+      to_name: user.nombre,
+      email_user: user.email,
+      message: nombreProducto,
+      total: `Total pagado: ${total}`
+    };
+
+    await emailjs.send('service_h5fcnzr', 'template_a9as1iu', templateParams, 'fE6CDGlBRUzLdhz3v');
+    console.log('Correo enviado exitosamente');
+  } catch (error) {
+    console.error('Error al enviar el correo electrónico:', error);
   }
-}, [compra]);
+};
+
+// Llama a la función enviarCorreo con los datos de la API
+const nombreProducto = carrito.map( carr => `${carr.nombre}, Cantidad: ${carr.cantidad}, Precio: ${carr.precio*carr.cantidad}`).join(', ');
+
+
+
 
 
 
