@@ -2,6 +2,7 @@ import Image from 'next/image';
 import Layout from '../components/layout'
 import styles from '../styles/nosotros.module.css'
 
+//Imagen y texto de informacion sobre la tienda
 export default function Nosotros() {
   return (
     <Layout

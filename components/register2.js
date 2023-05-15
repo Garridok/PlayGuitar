@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import styles from '../styles/register.module.css'
-import bcrypt from 'bcryptjs';
 import { AES } from 'crypto-js';
 import axios from "axios";
 
 export default function Register2({nombre, apellido, email, fechaN , pass, nextRegister, cambiarRegister}) {
 
+  //Para guardar los datos que obtengamos del formulario
   const [calle, setCalle] = useState("");
   const [postal, setPostal] = useState("");
   const [letra, setLetra] = useState("");
@@ -17,14 +17,14 @@ export default function Register2({nombre, apellido, email, fechaN , pass, nextR
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // const cryptPass = bcrypt.hashSync(pass, 10);
-
-      //encrypt
+    //encrypt
+    //Contraseña encryptada
     const plaintext = pass;
     const key = 'tfggarrido';
+    //Descryptar
     const cryptPass = AES.encrypt(plaintext, key).toString();
   
-    
+    //Creamos el objectos con los valores que hemos obtenidos
     const formData = {
       "apellidos": apellido,
       "email": email,
@@ -44,16 +44,15 @@ export default function Register2({nombre, apellido, email, fechaN , pass, nextR
     }
     
     try {
+      //Mandamos el objeto a la Base de datos
       const response = await axios.post(
-        //Aqui ponemos la URL de nuestra api
         "http://127.0.0.1:8087/user/alta",
         formData
       );
-      console.log(response);
     } catch(error){
       console.log(error);
     }
-
+    //Mandamos al login, y mandamos alerta de logeado
     cambiarRegister() & alert("registrado")
   }
 
@@ -62,7 +61,7 @@ export default function Register2({nombre, apellido, email, fechaN , pass, nextR
 
   return (
     <main className="contenedor">
-      <form onSubmit={ handleSubmit} className={styles.form2}>
+      <form onSubmit={ handleSubmit } className={styles.form2}>
         <div className={styles.flex}>
         <div className={styles.primerapart}>
         <div className={styles.part1}>

@@ -6,54 +6,46 @@ import { AES } from 'crypto-js';
 import CryptoJS from 'crypto-js';
 
 
-export default function Login({cambiarRegister, cambiarLog, iniciarSesion, actualizarCarro}) {
+export default function Login({cambiarRegister, cambiarLog, actualizarCarro}) {
 
   // Email y pass del usuario
   const [emailUser, setEmailUser] = useState('');
   const [passUser, setPassUser] = useState('');
 
-  //Email y pass de DB
-  const [emailDB, setEmailDB] = useState('');
-  const [passDB, setPassDB] = useState('');
 
-
-  //encrypt
-  // const plaintext = passUser;
-  const key = 'tfggarrido';
-  // const encryptedData = AES.encrypt(plaintext, key).toString();
-  // console.log(encryptedData);
-
-  //descrypt
- 
-  //console.log(decryptedData);
-
-  const encryptedData = passDB; // La cadena de texto obtenida en el paso anterior
-  const decryptedBytes = AES.decrypt(encryptedData, key);
-  const decryptedData = decryptedBytes.toString(CryptoJS.enc.Utf8);
+  //encrypt key
+  const key = 'tfggarrido'; 
 
 
 
+  //Cuando se mande el formulario se ejecuta esta funcion
   const handleSubmit = async (e) => {
     e.preventDefault();
   
     try {
+      //Nos trae el email que el usuario ha ingresado
       const response = await axios.get(`http://127.0.0.1:8087/user/findByEmail/${emailUser}`);
-      const encryptedData = response.data.password;
+      //Aquí cogemos la informacion de la contraseña, y si no hay, es por que no hay correo, y damos un valor definido, y dara error.
+      const encryptedData = response.data.password || '400';
       const decryptedBytes = AES.decrypt(encryptedData, key);
       const decryptedData = decryptedBytes.toString(CryptoJS.enc.Utf8);
 
+      //Comprobar si la contraseña de la Base de Datos es la misma que hemos ingresado
       if (passUser === decryptedData) {
         alert('logeado');
+        //Guardamos los datos del login en LocalStorage para guardar el login
         localStorage.setItem('user', JSON.stringify(response.data));
+        //Cambiamos el State para decir que estamos Logeados
         cambiarLog();
+        //Si nos logeamos, en el carrito se nos habilitas la opción de comprar
         actualizarCarro(false);
       } else {
         alert('Vuelve a intentar por favor');
       }
 
     } catch (error) {
+      // Manejar el error
       console.error(error);
-      // Manejar el error adecuadamente
     }
   };
   
@@ -81,14 +73,4 @@ export default function Login({cambiarRegister, cambiarLog, iniciarSesion, actua
   )
 }
 
-// export async function getServerSideProps() {
-//   const url='http://127.0.0.1:8087/user/todos'
-//   const respuesta = await fetch(url)
 
-//   const {data: email} = await respuesta.json(); 
-//   return {
-//       props: {
-//           email
-//       }
-//   }
-// }

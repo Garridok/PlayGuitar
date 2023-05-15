@@ -13,7 +13,7 @@ export default function Tienda({guitarras}) {
     >
         <main className='contenedor'>
             <h2 className='heading'>Nuestra Coleccion</h2>
-
+            {/* Recorremos todas las guitarras que hay y la guardamos en el componente guitarra para mostrarlo */}
             <div className={styles.grid}>
                 {guitarras?.map( guitarra => (
                     <Guitarra
@@ -27,7 +27,7 @@ export default function Tienda({guitarras}) {
   )
 }
 
-
+//Llamamos a todas las guitarras
 export async function getServerSideProps() {
     const respuesta = await fetch("http://127.0.0.1:8087/rest/todos")
     const guitarras = await respuesta.json();

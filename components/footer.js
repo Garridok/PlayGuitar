@@ -1,11 +1,9 @@
-import { useRouter } from "next/router"
 import Link from "next/link";
 import styles from '../styles/footer.module.css'
 
 
 export default function Footer() {
 
-  const router = useRouter();
 
   return (
     <footer className={styles.footer}>

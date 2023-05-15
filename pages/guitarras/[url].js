@@ -6,6 +6,7 @@ import Layout from '../../components/layout'
 export default function Producto({guitarra, agregarCarrito}) {
 
   const [cantidad, setCantidad] = useState(0);
+  //Destructuring de guitarra
   const { nombre, descripcion, precio, url } = guitarra
   
   const handleSubmit = e => {
@@ -18,13 +19,14 @@ export default function Producto({guitarra, agregarCarrito}) {
 
     //Construir Objecto con la guitarra seleccionada
     const guitarraSeleccionada = {
+      //Aqui cogemos el id de la guitarra
       id: guitarra.idProducto,
       url,
       nombre,
       precio,
       cantidad
     }
-
+    alert(`Guitarra ${guitarra.nombre} agregada en el carrito`)
     //Pasando la informaciona
     agregarCarrito(guitarraSeleccionada)
   }
@@ -67,13 +69,14 @@ export default function Producto({guitarra, agregarCarrito}) {
 
 
 
-
+//hacemos peticion fetch y recorremos todos los objetos
 export async function getStaticPaths() {
   const respuesta = await fetch(`http://127.0.0.1:8087/rest/todos`)
   const respon = await respuesta.json();
 
   const paths = respon.map( guitarra => ({
     params: {
+      //Guardamos cada ID de la guitarras
       url: guitarra.idProducto.toString(),
     }
   }))
@@ -84,11 +87,12 @@ export async function getStaticPaths() {
   }
 }
 
+//Aqui mandamos la ID de la guitarra que hemos seleccionado y para filtrar y traernos sus valores
 export async function getStaticProps({params: {url}}) {
       const respuesta = await fetch(`http://127.0.0.1:8087/rest/porId/${url}`)
       const guitarra = await respuesta.json()
-      
-      console.log();
+
+      //Y la exportamos con el nombre de guitarra
       return {
           props: {
               guitarra

@@ -1,11 +1,9 @@
 import Layout from '../components/layout'
 import Guitarra from '../components/guitarra'
-import TopVentas from '../components/topVentas'
 import styles from '../styles/grid.module.css'
-import { useState } from 'react'
 
 
-
+//Pagina de inicio
 export default function Home({guitarrasTop, guitarrasPopu, guitarrasUlti}) {
   
 
@@ -66,7 +64,7 @@ export default function Home({guitarrasTop, guitarrasPopu, guitarrasUlti}) {
   )
 }
 
-//Llamamos a la API y sacamos las tres primeras guitarras, para simular la top ventas
+//Llamamos a la API y sacamos las tres primeras guitarras, para simular la top ventas y top nuevas, etc
 export async function getServerSideProps() {
   const respuesta = await fetch("http://127.0.0.1:8087/rest/todos")
   const guitarras = await respuesta.json();
@@ -76,6 +74,7 @@ export async function getServerSideProps() {
   
 
   return {
+    //Mando la informacion al componente, para consumirla.
       props: {
           guitarrasTop: sliceData,
           guitarrasPopu: slicePopu,

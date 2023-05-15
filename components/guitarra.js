@@ -9,6 +9,7 @@ export default function Guitarra({guitarra}) {
   
   return (
   <div className={styles.guitarra}>
+    {/* Como las imagenes tienen diferente tamaños, usamos objectFit para que ocupe el espacio que tiene */}
     <Image src={url} style={{width: "600px", height: "400px", objectFit: "cover"}} width={600} height={400} alt={`Imagen de la guitarra ${nombre}`} />
 
     <div className={styles.contenido}>

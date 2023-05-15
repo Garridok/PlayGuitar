@@ -5,11 +5,8 @@ import Register2 from './register2';
 import { useState } from 'react';
 
 export default function Register1({nextReg, nextRegister, cambiarRegister}) {
-  
-
 
   //Datos de formulario de registro
-  //cuando descomentemos, acordar poner onSubmit en el form
   const [nombre, setNombre] = useState("");
   const [apellido, setApellido] = useState("");
   const [email, setEmail] = useState("");
@@ -79,6 +76,7 @@ export default function Register1({nextReg, nextRegister, cambiarRegister}) {
 
 
       </form>
+      //Mandamos los datos recibidos a la segunda parte del registro
       : <Register2 
           nombre={nombre}
           apellido={apellido}

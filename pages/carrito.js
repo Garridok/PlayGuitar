@@ -9,12 +9,7 @@ export default function Carrito({carrito, actualizarCantidad, eliminarProducto, 
 
     const [total, setTotal] = useState(0)
     
-    useEffect( () => {
-        const calculoTotal = carrito.reduce( (total, producto) => total + (producto.cantidad * producto.precio), 0 )
-        setTotal(calculoTotal)
-    },[carrito])
-
-    //Direccion del carrito
+    //Valores predeterminados, para evitar errores, hasta que la peticion rellene los valores.
     const [newUser, setNewUser] = useState({
       nombre: '',
       apellidos: '',
@@ -30,22 +25,50 @@ export default function Carrito({carrito, actualizarCantidad, eliminarProducto, 
       }]
   })
 
+  const [ compra, setCompra ] = useState(true);
+
+//Cada vez que el carrito se modifica, volvemos a calcular el total de carrito, por si agregamos o quitamos.
+useEffect( () => {
+  const calculoTotal = carrito.reduce( (total, producto) => total + (producto.cantidad * producto.precio), 0 )
+  //Seteamos el valor en el state de total
+  setTotal(calculoTotal)
+},[carrito])
+
+//Cada vez que cargamos el componente, compruebo que si tenemos algo en el localStorage y setteamos el valor en el state
 useEffect(() => {
       const userLS = typeof window !== 'undefined' ? JSON.parse(localStorage.getItem('user')) ?? [] : [];
       setNewUser(userLS); 
 }, []);
 
-const {nombre, apellidos, email, fechaNacimiento, direcciones=[]} = newUser
+//Cuando la compra se ejecute, en un segundo para cambiar state de compra
+useEffect(() => {
+  if (!compra) {
+    setCompra(true);
+    const timer = setTimeout(() => {
+    }, 1000); // Espera de 1 segundo
+    
+    // Limpiar el temporizador si el efecto se desmonta antes de que se complete el tiempo de espera
+    return () => {clearTimeout(timer); alert('Compra realizada')}
+  }
+}, [compra])
+
+//Destructuring del objecto, para llamar rapidamente a cada valor
+const {direcciones=[]} = newUser
+//Aqui ademas de destructuring, le damos un valor inicial, hasta que se settee el valor y no de errores
 const {calle='', codigoPostal=0, letra='', localidad='', numero=0, piso=0} = direcciones[0] || {};
 
-const [ compra, setCompra ] = useState(true);
 
+
+//Funcion cuando pulse comprar
 const realizarCompra = () => {
+  //comprobar si el carrito tiene elementos
   if(carrito.length > 0) {
+    //cambiamos al state para mostrar el loader y realizar la compra
     setCompra(false)
-    enviarCorreo(newUser, carrito)
+    //enviamos el correo con los datos de la compra
+    enviarCorreo(newUser)
+    //eliminamos todos los elementos del carrito
     carrito?.map( carr => {
-      console.log(carr.id);
       eliminarProducto( carr.id )
       setCarrito([])
     })
@@ -55,20 +78,11 @@ const realizarCompra = () => {
 }
 
 
-useEffect(() => {
-  if (!compra) {
-    setCompra(true);
-    const timer = setTimeout(() => {
-    }, 1000); // Espera de 1 segundo (1000 milisegundos)
-    
-    return () => {clearTimeout(timer); alert('Compra realizada')}
-    // Limpiar el temporizador si el efecto se desmonta antes de que se complete el tiempo de espera
-  }
-}, [compra])
+
 
 
 //Correo electronico
-const enviarCorreo = async (user, carro) => {
+const enviarCorreo = async (user) => {
   try {
     const templateParams = {
       // Proporciona los datos necesarios para reemplazar en la plantilla
@@ -79,7 +93,6 @@ const enviarCorreo = async (user, carro) => {
     };
 
     await emailjs.send('service_h5fcnzr', 'template_a9as1iu', templateParams, 'fE6CDGlBRUzLdhz3v');
-    console.log('Correo enviado exitosamente');
   } catch (error) {
     console.error('Error al enviar el correo electrónico:', error);
   }
@@ -182,6 +195,7 @@ const nombreProducto = carrito.map( carr => `${carr.nombre}, Cantidad: ${carr.ca
               <p>Localidad: {localidad}</p>
               <p>Numero: {numero}</p>
               <p>Piso: {piso}</p>
+
               {compra ? <div>
                             <button type='button' onClick={() => realizarCompra() }>
                               Realizar Compra

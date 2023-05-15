@@ -25,6 +25,8 @@ export default function Blog({noticias}) {
 }
 
 
+//Llamamos a una API de noticias sacada de internet, y filtramos para solo sacar noticias de musica
+//Es serverSideProps para que se vaya actualizando en funcion hay nuevas
 export async function getServerSideProps() {
     const url='https://newsapi.org/v2/everything?q=music&pageSize=12&apiKey=be88e5647cdc4e85ac2159dfb12c963d'
     const respuesta = await fetch(url)

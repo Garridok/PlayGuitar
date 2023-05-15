@@ -12,9 +12,7 @@ export default function Header() {
   return (
     <header className={styles.header}>
         <div className={`contenedor ${styles.barra}`}>
-            {/* tenemos que agregar width y height en next para las imagenes */}
             <Link href='/'>
-              {/* <Image src='/img/logo.svg' width={300} height={40} alt='Imagen logotipo'/> */}
               <Image src='/img/logo1.png' width={250} height={30} alt='Imagen logotipo'/>
             </Link>
 
