@@ -27,23 +27,9 @@
 
 }
 
-.btnRe {
-    width: 20%;
-    padding: .5rem;
-    background-color: var(--primary);
-    color: white;
-    margin-left: 36rem;
-    margin-top: 2rem;
-    border-radius: 12px;
-    border: none;
-    cursor: pointer;
-    transition: 300ms;
-  }
 
-  .btnRe:hover {
-    background-color: rgb(200, 134, 13);
-    transition: 300ms;
-  }
+
+
 
 .newAccount {
     font-size: 15px;
@@ -59,12 +45,29 @@
 
   }
 
-  .btnRe2 {
+  .btnRe {
     width: 20%;
+    padding: .5rem;
+    background-color: var(--primary);
+    color: white;
+    margin-left: 36rem;
+    margin-top: 2rem;
+    border-radius: 12px;
+    border: none;
+    cursor: pointer;
+    transition: 300ms;
+  }
+  .btnRe:hover {
+    background-color: rgb(200, 134, 13);
+    transition: 300ms;
+  }
+
+  .btnRe2 {
+    width: 22%;
     padding: 1rem;
     background-color: rgb(68, 207, 68);
     color: white;
-    margin-left: 36rem;
+    margin-left: 9rem;
     margin-top: 2rem;
     border-radius: 12px;
     border: none;
@@ -77,9 +80,23 @@
     transition: 300ms;
   }
 
+  .btnRe3 {
+    width: 20%;
+    padding: 1rem;
+    background-color: var(--primary);
+    color: white;
+    margin-left: 3rem;
+    margin-top: 2rem;
+    border-radius: 12px;
+    border: none;
+    cursor: pointer;
+    transition: 300ms;
+  }
+
+  .btnRe3:hover {
+    background-color:rgb(200, 134, 13);
+  }
+
   .btnstyle{
     display: flex;
-    justify-content: center;
-
-    
   }

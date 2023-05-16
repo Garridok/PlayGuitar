@@ -124,12 +124,14 @@ export default function Register2({nombre, apellido, email, fechaN , pass, nextR
           />
         </div>
         <div className={styles.btnstyle}>
-          <button type='button'
+          <button type='button' className={styles.btnRe3}
                   onClick={() => nextRegister()}
-          >Anterior
+            >Anterior
           </button>
+
           <button className={styles.btnRe2} type="submit"
-          >enviar</button>
+            >Enviar
+          </button>
         </div>
         
         </div>

@@ -31,7 +31,7 @@ export default function Carrito({carrito, actualizarCantidad, eliminarProducto, 
 useEffect( () => {
   const calculoTotal = carrito.reduce( (total, producto) => total + (producto.cantidad * producto.precio), 0 )
   //Seteamos el valor en el state de total
-  setTotal(calculoTotal)
+  setTotal(calculoTotal.toFixed(2))
 },[carrito])
 
 //Cada vez que cargamos el componente, compruebo que si tenemos algo en el localStorage y setteamos el valor en el state
@@ -180,7 +180,7 @@ const nombreProducto = carrito.map( carr => `${carr.nombre}, Cantidad: ${carr.ca
             <div>
               <h3>Tienes que logearte para comprar</h3>
               <Link href='/user'>
-                <button>
+                <button className={styles.btnCarro}>
                   Iniciar Sesion 
                 </button>
               </Link>
@@ -197,7 +197,7 @@ const nombreProducto = carrito.map( carr => `${carr.nombre}, Cantidad: ${carr.ca
               <p>Piso: {piso}</p>
 
               {compra ? <div>
-                            <button type='button' onClick={() => realizarCompra() }>
+                            <button type='button' className={styles.btnCarro} onClick={() => realizarCompra() }>
                               Realizar Compra
                             </button>
                         </div> : 

@@ -1,10 +1,11 @@
 import Layout from '../components/layout'
 import Guitarra from '../components/guitarra'
+import Noticias from '../components/noticias'
 import styles from '../styles/grid.module.css'
 
 
 //Pagina de inicio
-export default function Home({guitarrasTop, guitarrasPopu, guitarrasUlti}) {
+export default function Home({guitarrasTop, guitarrasPopu, guitarrasUlti, noticiasIni}) {
   
 
   return (
@@ -28,6 +29,18 @@ export default function Home({guitarrasTop, guitarrasPopu, guitarrasUlti}) {
                     ) )}
             </div>
             </div>
+          
+          <div className="mt-5 borderb">
+            <h2 className='heading'> Noticias Recientes</h2>
+          <div className={styles.grid}>
+          {noticiasIni?.map( noticia => (
+                <Noticias
+                  key={noticia.source.id} 
+                  noticia={noticia} />
+              ))}
+          </div>
+          </div>
+
 
           <div className="mt-5 borderb">
           <h1 className='heading'> Populares Actuales </h1>
@@ -67,10 +80,15 @@ export default function Home({guitarrasTop, guitarrasPopu, guitarrasUlti}) {
 //Llamamos a la API y sacamos las tres primeras guitarras, para simular la top ventas y top nuevas, etc
 export async function getServerSideProps() {
   const respuesta = await fetch("http://127.0.0.1:8087/rest/todos")
+  //Noticias
+  const url='https://newsapi.org/v2/everything?q=music&pageSize=12&apiKey=be88e5647cdc4e85ac2159dfb12c963d'
+  const notiLlamada = await fetch(url)
+  const {articles: noticias} = await notiLlamada.json();
   const guitarras = await respuesta.json();
   const sliceData = guitarras.slice(0, 3);
   const slicePopu = guitarras.slice(5, 8);
-  const sliceUlti = guitarras.slice(13, 19)
+  const sliceUlti = guitarras.slice(13, 19);
+  const sliceNoti = noticias.slice(0,6);
   
 
   return {
@@ -78,7 +96,8 @@ export async function getServerSideProps() {
       props: {
           guitarrasTop: sliceData,
           guitarrasPopu: slicePopu,
-          guitarrasUlti: sliceUlti
+          guitarrasUlti: sliceUlti,
+          noticiasIni: sliceNoti
       }
   }
 }

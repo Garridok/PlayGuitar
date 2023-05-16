@@ -76,6 +76,21 @@
     cursor: pointer;
 }
 
+.btnCarro {
+  width: 70%;
+  padding: .8rem;
+  background-color: var(--primary);
+  color: white;
+  margin-top: 1rem;
+  margin-left: 4rem;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  transition: 300ms;
+}
+.btnCarro:hover {
+  background-color: rgb(200, 134, 13);
+}
 
 /* Spinner */
 /* Absolute Center Spinner */
