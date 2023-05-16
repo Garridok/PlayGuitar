@@ -1,4 +1,6 @@
 
+
+
 .titulo {
     color: var(--primary);
     width: 10%;
@@ -7,19 +9,18 @@
 .part1 {
     margin: 2rem;
     width: 50%;
-
 }
 
 .part1 label {
     color: var(--primary);
     font-weight: 700;
     text-align: center;
-    margin-left: 20px;
 }
 
 .part1 input {
-    margin-left: 2rem;
+  margin-left: -10rem;
 }
+
 
 .flex {
     display: flex;
@@ -46,11 +47,11 @@
   }
 
   .btnRe {
-    width: 20%;
+    width: 70%;
     padding: .5rem;
+    margin-left: -2rem;
     background-color: var(--primary);
     color: white;
-    margin-left: 36rem;
     margin-top: 2rem;
     border-radius: 12px;
     border: none;
@@ -62,12 +63,13 @@
     transition: 300ms;
   }
 
+
   .btnRe2 {
-    width: 22%;
+    width: 45%;
     padding: 1rem;
     background-color: rgb(68, 207, 68);
     color: white;
-    margin-left: 9rem;
+    margin-left: 2rem;
     margin-top: 2rem;
     border-radius: 12px;
     border: none;
@@ -81,11 +83,11 @@
   }
 
   .btnRe3 {
-    width: 20%;
+    width: 45%;
     padding: 1rem;
     background-color: var(--primary);
     color: white;
-    margin-left: 3rem;
+    margin-left: -5rem;
     margin-top: 2rem;
     border-radius: 12px;
     border: none;
@@ -99,4 +101,26 @@
 
   .btnstyle{
     display: flex;
+  }
+
+  @media (min-width: 768px) {
+    .btnRe {
+      margin-left: 36rem;
+      width: 20%;
+    }
+    .part1 input {
+      margin-left: 2rem;
+    }
+  
+    .part1 label {
+      margin-left: 20px;
+    }
+    .btnRe2 {
+      width: 22%;
+      margin-left: 9rem;
+    }
+    .btnRe3 {
+      width: 20%;
+      margin-left: 3rem;
+    }
   }

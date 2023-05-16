@@ -79,13 +79,23 @@ main {
   color: var(--primary);
 }
 
-.primera{
-  display: flex;
+
+
+@media (min-width: 768px) {
+  .primera {
+    display: flex;
+    margin-left: 13rem;
+  }
 }
 
 .datos{
-  padding: 3rem;
+  padding: 1rem;
+}
+@media (min-width: 768px) {
+  .datos {
   display: flex;
+  padding: 3rem;
+  }
 }
 
 .datos label {
@@ -94,9 +104,16 @@ main {
   font-weight: 700;
 }
 
+
 .datos input {
   display: flex;
   justify-content: center ;
+}
+
+.small {
+  margin-left: 1rem;
+  margin-top: rem;
+  
 }
 
 .button {

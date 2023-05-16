@@ -11,6 +11,7 @@
     align-items: center;
 }
 
+
 @media (min-width: 768px) {
     .barra{
         flex-direction: row;
@@ -22,12 +23,17 @@
     margin-top: 5rem;
     display: flex;
     align-items: center;
-    gap: 2rem;
+    gap: .5rem;
+}
+
+.navegacion img {
+    width: 28px ;
 }
 
 @media (min-width: 768px) {
     .navegacion{
         margin: 0;
+        gap: 2rem;
     }
 }
 

@@ -23,10 +23,10 @@ export default function Header() {
             <Link href='/noticia' className={ router.pathname === '/noticia' ? styles.active : '' }>Noticias</Link>
             <Link href='/tienda' className={ router.pathname === '/tienda' ? styles.active : '' }>Tienda</Link>
             <Link href='/carrito'>
-              <Image src='/img/carrito.png' alt='carrito' width={30} height={25} />
+              <Image src='/img/carrito.png' alt='carrito' width={180} height={25} />
             </Link>
             <Link href='/user'>
-              <Image src='/img/userwhite.png' alt='user' width={35} height={30} />
+              <Image src='/img/userwhite.png' alt='user' width={180} height={30} />
             </Link>
 
 

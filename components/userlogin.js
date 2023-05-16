@@ -41,20 +41,6 @@ const logoutFun = () => {
     actualizarCarro(true);
 }
 
-
-
-console.log(codigoPostal);
-const handleEditar =  () => {
-
-        
-        // Guardar cambios en el localStorage
-        
-
-        // Enviar cambios a la base de datos con Axios
-        // await axios.put('URL_DE_TU_API', newUser);
-    
-        // setEditable(false);
-}
     
 
 
@@ -89,13 +75,14 @@ const handleEditar =  () => {
 
                         <div className="datos">
                             <label>Email</label>
-                            <input type="text" defaultValue={email} 
+                            <input type="email" defaultValue={email} 
                                  onChange={(e) =>
                                     setNewUser((prevState) => ({
                                         ...prevState,
                                         email: e.target.value
                                     }))
                                   } readOnly={!editable} />
+                        {/* <small className='small'>*El Email no se puede editar*</small> */}
                         </div>
 
                         <div className="datos">
