@@ -1,6 +1,5 @@
 import styles from '../styles/login.module.css'
-import Link from 'next/link'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import axios from 'axios'
 import { AES } from 'crypto-js';
 import CryptoJS from 'crypto-js';

@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-// import { UserContext } from "./UserContext";
+
 
 export default function Userlogin({cambiarLog, actualizarCarro}) {
 
+  //Creamos la variable, con unos default, hasta el localStorage rellene los datos reales,y evitamos errores
     const [newUser, setNewUser] = useState({
         nombre: '',
         apellidos: '',
@@ -18,23 +19,26 @@ export default function Userlogin({cambiarLog, actualizarCarro}) {
             piso: ''
         }]
     })
-
+    //State para habilitar la opcion de editar y escribir
     const [editable, setEditable] = useState(false);
+    //Cuando se termine de editar, cambiamos el state y guardamos en localStorage y mandamos la BBDD la nueva informacion
     const editarUser = async () => {
         setEditable(!editable)
         localStorage.setItem('user', JSON.stringify(newUser));
         await axios.put(`http://127.0.0.1:8087/user/editar/${idUsuario}`, newUser);
     }
-
+//Cuando el componente sea llamado, que se traiga del localStorage los datos del user
 useEffect(() => {
         const userLS = typeof window !== 'undefined' ? JSON.parse(localStorage.getItem('user')) ?? [] : [];
         setNewUser(userLS);
         
 }, []);
-
+//Destructuring de los datos del usuario que traemos desde el localStorage
 const {idUsuario, nombre, apellidos, email, fechaNacimiento, direcciones=[{}]} = newUser
+//Destructuring de direcciones.
 const {calle, codigoPostal, letra, localidad, numero, piso} = direcciones[0];
 
+//Deslogear, borramos los datos del localStorage, cambiamos el state tanto de logeo, como el de habilitar la compra en el carrito.
 const logoutFun = () => {
     localStorage.setItem('user', JSON.stringify( {} ));
     cambiarLog();
@@ -53,6 +57,7 @@ const logoutFun = () => {
                         <div className="datos">
                             <label>Nombre: </label>
                             <input type="text" defaultValue={nombre} 
+                                    // cada vez que cambie, lo guarda en su campo
                                      onChange={(e) =>
                                         setNewUser((prevState) => ({
                                             ...prevState,
@@ -81,8 +86,10 @@ const logoutFun = () => {
                                         ...prevState,
                                         email: e.target.value
                                     }))
-                                  } readOnly={!editable} />
-                        {/* <small className='small'>*El Email no se puede editar*</small> */}
+                                  } readOnly={true}
+                                  onClick={() => {editable ? alert('El Email no se puede editar') : null}}
+                                  />
+                        
                         </div>
 
                         <div className="datos">

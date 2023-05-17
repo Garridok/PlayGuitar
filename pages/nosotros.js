@@ -10,10 +10,10 @@ export default function Nosotros() {
       description={"Ventas de guitarras, y blog de musica"}
     >
       <main className="contenedor">
-        <h2 className="heading">Nosotros</h2>
+        <h2 className="heading">Sobre Nosotros</h2>
 
         <div className={styles.contenido}>
-          <Image src='/img/nosotros.jpg' width={1000} height={800} alt='nosotros img' />
+          <Image src='/img/nosotros2.jpeg' width={1400} height={800} alt='nosotros img' />
           <div>
             <p>
             ¡Bienvenido a nuestra tienda de guitarras eléctricas, donde el sonido y el estilo se fusionan en armonía! En nuestro exclusivo espacio, los amantes de la música encontrarán el paraíso que siempre han buscado. Sumérgete en un universo de emociones musicales mientras exploras nuestra amplia selección de guitarras eléctricas de alta calidad, diseñadas para satisfacer las necesidades de músicos de todos los niveles.

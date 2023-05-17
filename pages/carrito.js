@@ -154,11 +154,12 @@ const nombreProducto = carrito.map( carr => `${carr.nombre}, Cantidad: ${carr.ca
                       </div>
 
                       <p className={styles.precio}>
-                        $<span>{producto.precio}</span>
+                       <span> Unidad: </span>
+                        <span className='black'> {producto.precio} €</span>
                       </p>
                       <p className={styles.subtotal}>
-                        Subtotal: $
-                        <span>{producto.cantidad * producto.precio}</span>
+                        Subtotal: 
+                        <span> {producto.cantidad * producto.precio}€</span>
                       </p>
                     </div>
 

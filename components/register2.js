@@ -18,10 +18,10 @@ export default function Register2({nombre, apellido, email, fechaN , pass, nextR
     e.preventDefault();
 
     //encrypt
-    //Contraseña encryptada
     const plaintext = pass;
     const key = 'tfggarrido';
-    //Descryptar
+
+    //Contraseña encryptada
     const cryptPass = AES.encrypt(plaintext, key).toString();
   
     //Creamos el objectos con los valores que hemos obtenidos

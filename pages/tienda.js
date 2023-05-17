@@ -12,7 +12,7 @@ export default function Tienda({guitarras}) {
     description={'Ventas de guitarras, y blog de musica'}
     >
         <main className='contenedor'>
-            <h2 className='heading'>Nuestra Coleccion</h2>
+            <h2 className='heading'>Catálogo de Guitarras</h2>
             {/* Recorremos todas las guitarras que hay y la guardamos en el componente guitarra para mostrarlo */}
             <div className={styles.grid}>
                 {guitarras?.map( guitarra => (
