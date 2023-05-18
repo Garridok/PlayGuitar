@@ -3,6 +3,7 @@
     padding: .5rem 0;
     background-position: center;
     background-size: cover;
+    border-radius:  0 0 25px 25px;
 }
 
 .barra{
