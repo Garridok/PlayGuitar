@@ -57,7 +57,6 @@ const logoutFun = () => {
                         <div className="datos">
                             <label>Nombre: </label>
                             <input type="text" defaultValue={nombre} 
-                                    // cada vez que cambie, lo guarda en su campo
                                      onChange={(e) =>
                                         setNewUser((prevState) => ({
                                             ...prevState,
@@ -68,12 +67,12 @@ const logoutFun = () => {
                         </div>
 
                         <div className="datos">
-                            <label>Apellidos </label>
+                            <label>Apellidos: </label>
                             <input type="text" defaultValue={apellidos}
                                     onChange={(e) =>
                                         setNewUser((prevState) => ({
                                             ...prevState,
-                                            apellido: e.target.value
+                                            apellidos: e.target.value
                                         }))
                                       } readOnly={!editable} />
                         </div>

@@ -39,7 +39,7 @@ export default function Producto({guitarra, agregarCarrito}) {
         <div className={styles.contenido}>
           <h3>{nombre}</h3>
           <p className={styles.descripcion}>{descripcion}</p>
-          <p className={styles.precio}>${precio}</p>
+          <p className={styles.precio}>{precio}€</p>
 
           <form className={styles.formulario}
                 onSubmit={handleSubmit}
