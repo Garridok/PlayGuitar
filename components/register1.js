@@ -1,5 +1,3 @@
-import axios from 'axios';
-import bcrypt from 'bcryptjs';
 import styles from '../styles/register.module.css'
 import Register2 from './register2';
 import { useState } from 'react';

@@ -7,7 +7,7 @@ export default function Nosotros() {
   return (
     <Layout
       title={"Nosotros"}
-      description={"Ventas de guitarras, y blog de musica"}
+      description={"Ventas de guitarras, y sobre nosotros"}
     >
       <main className="contenedor">
         <h2 className="heading">Sobre Nosotros</h2>

@@ -2,9 +2,12 @@ import { useState, useEffect } from 'react'
 import '../styles/globals.css'
 
 function MyApp({ Component, pageProps }) {
+//Este es el primer componente que nuestra proyecto consulta.
+
 
   //Para detectar si el carrito esta en local tiene algo o creamos un array vacio
   const carritoLS = typeof window !== 'undefined' ?  JSON.parse(localStorage.getItem('carrito')) ?? [] : []
+  //Lo mismo pero con el usuario
   const userLS = typeof window !== 'undefined' ?  JSON.parse(localStorage.getItem('user')) ?? [] : []
   
   //Aqui setteamos el carrito, o lo mandamos vacio, en funcion de arriba

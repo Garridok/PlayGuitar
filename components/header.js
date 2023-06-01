@@ -8,7 +8,6 @@ export default function Header() {
 
   const router = useRouter();
 
-
   return (
     <header className={styles.header}>
         <div className={`contenedor ${styles.barra}`}>
@@ -22,10 +21,10 @@ export default function Header() {
             <Link href='/nosotros' className={ router.pathname === '/nosotros' ? styles.active : '' }>Nosotros</Link>
             <Link href='/noticia' className={ router.pathname === '/noticia' ? styles.active : '' }>Noticias</Link>
             <Link href='/tienda' className={ router.pathname === '/tienda' ? styles.active : '' }>Tienda</Link>
-            <Link href='/carrito'>
+            <Link href='/carrito' className={ router.pathname === '/carrito' ? styles.active : '' }>
               <Image src='/img/carrito.png' alt='carrito' width={180} height={25} />
             </Link>
-            <Link href='/user'>
+            <Link href='/user' className={ router.pathname === '/user' ? styles.active : '' }>
               <Image src='/img/userwhite.png' alt='user' width={180} height={30} />
             </Link>
 

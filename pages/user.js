@@ -9,17 +9,14 @@ export default function user({register, login, nextReg, cambiarRegister, cambiar
   return (
     <Layout
     title={'Cuenta'}
-    description={'Ventas de guitarras, y blog de musica'}
+    description={'Ventas de guitarras'}
     >
-        {/* Si el usuario no esta logeado o logeado */}
+    {/* Si el usuario no esta logeado o logeado */}
     {register ? <LoginRegister login={login} nextReg={nextReg} nextRegister={nextRegister} cambiarRegister={cambiarRegister}             cambiarLog={cambiarLog} 
     actualizarCarro={actualizarCarro}
     /> : <Userlogin cambiarLog={cambiarLog} stateUser={stateUser} actualizarCarro= {actualizarCarro} />
   }
-
-        
+  
     </Layout>
   )
 }
-
-// pedir por props datos de usuarios

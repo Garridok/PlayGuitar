@@ -32,7 +32,7 @@ export default function Producto({guitarra, agregarCarrito}) {
   }
 
   return (
-    <Layout title={`Guitarra ${nombre}`}>
+    <Layout title={`Guitarra ${nombre}`} description={`Agregar al carrito ${nombre}`}>
       <div className={styles.guitarra}>
         <Image src={url} alt={`imagen de ${nombre}`} width={600} height={400} />
 
@@ -70,6 +70,7 @@ export default function Producto({guitarra, agregarCarrito}) {
 
 
 //hacemos peticion fetch y recorremos todos los objetos
+//GetStaticpaths es una funcion de next, que si se agrega algo nuevo a la API, este no lo muestra hasta que recarga la pagina
 export async function getStaticPaths() {
   const respuesta = await fetch(`http://127.0.0.1:8087/rest/todos`)
   const respon = await respuesta.json();

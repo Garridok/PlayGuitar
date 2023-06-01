@@ -7,7 +7,7 @@ export default function Noticias({noticia}) {
 
     //destructuring de nuestro prop para trabajar mejor
     const { title, description, url, urlToImage } = noticia;
-    //Por seguridad next solo acepta url definidas, cloudinary crea una url unica
+    //Por seguridad next.js solo acepta url definidas, cloudinary crea una url unica.
     const img = `https://res.cloudinary.com/demo/image/fetch/${urlToImage}` 
 
   return (

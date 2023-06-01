@@ -1,10 +1,8 @@
 import Link from "next/link";
 import styles from '../styles/footer.module.css'
 
-
+// Nuestro componente footer para el layout
 export default function Footer() {
-
-
   return (
     <footer className={styles.footer}>
         <div className={`contenedor ${styles.contenido} `}>

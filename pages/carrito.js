@@ -204,7 +204,6 @@ const nombreProducto = carrito.map( carr => `${carr.nombre}, Cantidad: ${carr.ca
                         </div> : 
                                   <div>
                                     <div className={styles.loading}>Loading&#8230 Compra Realizada;</div>
-                                    <h3>Compra realizada</h3>
                                   </div>
                                   
                                   }

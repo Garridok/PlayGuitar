@@ -4,9 +4,9 @@ import styles from '../styles/guitarras.module.css'
 
 export default function Guitarra({guitarra}) {
 
+  //destructuring de la guitarras, para sacar sus caracteristicas mas facilmente
   const {  descripcion , url, nombre, precio, idProducto } = guitarra;
 
-  
   return (
   <div className={styles.guitarra}>
     {/* Como las imagenes tienen diferente tamaños, usamos objectFit para que ocupe el espacio que tiene */}

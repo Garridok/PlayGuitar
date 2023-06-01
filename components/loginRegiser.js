@@ -3,7 +3,7 @@ import Login from "./login"
 
 
 export default function LoginRegister ({login, nextReg, nextRegister, cambiarRegister, cambiarLog, actualizarCarro}) {
-  //Aqui vamos a ver cual register
+  //Aqui vamos a ver que state tenemos para saber a donde debemos mandar al usuario
   return (
     <div>
       {/* Vemos si estamos en registrar, o estamos en el apartado de login */}

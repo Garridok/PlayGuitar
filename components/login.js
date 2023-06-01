@@ -24,8 +24,8 @@ export default function Login({cambiarRegister, cambiarLog, actualizarCarro}) {
     try {
       //Nos trae el email que el usuario ha ingresado
       const response = await axios.get(`http://127.0.0.1:8087/user/findByEmail/${emailUser}`);
-      //Aquí cogemos la informacion de la contraseña, y si no hay, es por que no hay correo, y damos un valor definido, y dara error.
-      const encryptedData = response.data.password || '400';
+      //Aquí cogemos la informacion de la contraseña, y si no hay, es por que no hay correo, y damos un valor vacio, y no pasara la validacion.
+      const encryptedData = response.data.password || '';
       const decryptedBytes = AES.decrypt(encryptedData, key);
       const decryptedData = decryptedBytes.toString(CryptoJS.enc.Utf8);
 
@@ -39,11 +39,11 @@ export default function Login({cambiarRegister, cambiarLog, actualizarCarro}) {
         //Si nos logeamos, en el carrito se nos habilitas la opción de comprar
         actualizarCarro(false);
       } else {
-        alert('Vuelve a intentar por favor');
+        alert('Correo o contraseña incorrecto');
       }
 
     } catch (error) {
-      // Manejar el error
+      //error
       console.error(error);
     }
   };
