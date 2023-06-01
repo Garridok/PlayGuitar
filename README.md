@@ -1,3 +1,5 @@
+Toda la domucumentación dentro del proyecto está sin tildes, por que programo en un teclado americano.
+
 Guía de instalación del FrontEnd
 
 Es importante que antes de hacer esta guía de instalación, se haya realizado la instalación de nuestro Backend y nuestra Base de Datos, ya que sin ello, no va a funcionar.
